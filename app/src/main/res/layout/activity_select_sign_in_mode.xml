@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SelectSignInMode">
+    tools:context=".ui.user.SelectSignInMode">
 
     <LinearLayout
         android:layout_width="match_parent"

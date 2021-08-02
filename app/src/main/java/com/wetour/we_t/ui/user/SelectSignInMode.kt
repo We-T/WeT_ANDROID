@@ -1,9 +1,9 @@
-package com.wetour.we_t
+package com.wetour.we_t.ui.user
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.wetour.we_t.R
 
 class SelectSignInMode : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
