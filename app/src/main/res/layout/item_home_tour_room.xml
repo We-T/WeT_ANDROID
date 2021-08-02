@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="20dp"
+    android:layout_marginHorizontal="10dp">
+
+    <FrameLayout
+        android:id="@+id/item_home_tour_room_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/item_home_tour_img_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/img_mama" />
+
+        <ImageView
+            android:id="@+id/item_home_tour_img_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_papa" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/item_home_tour_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:lineSpacingExtra="11sp"
+        android:text="사랑하는 엄빠의 제주여행"
+        android:textColor="@color/charcoal_grey"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/item_home_tour_room_frame"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_home_tour_dDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:lineSpacingExtra="13sp"
+        android:text="D-10"
+        android:textColor="@color/charcoal_grey"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/item_home_tour_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_home_tour_name" />
+
+    <TextView
+        android:id="@+id/item_home_tour_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:lineSpacingExtra="13sp"
+        android:text="08.02~08.05"
+        android:textColor="@color/warm_grey"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/item_home_tour_dDay"
+        app:layout_constraintStart_toEndOf="@+id/item_home_tour_dDay"
+        app:layout_constraintTop_toTopOf="@+id/item_home_tour_dDay" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
