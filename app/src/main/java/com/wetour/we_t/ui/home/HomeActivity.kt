@@ -1,7 +1,9 @@
 package com.wetour.we_t.ui.home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wetour.we_t.R
@@ -10,8 +12,9 @@ import com.wetour.we_t.ui.home.tourContents.MultiRecyclerTitleAdapter
 import com.wetour.we_t.ui.home.tourContents.model.RecyclerModel
 import com.wetour.we_t.ui.home.tourContents.model.MultiRecyclerTitle
 import com.wetour.we_t.ui.home.tourRoom.TourRoomAdapter
+import com.wetour.we_t.ui.makeTour.MakeTourActivity
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() , View.OnClickListener{
 
     lateinit var tourRoomAdapter: TourRoomAdapter
     var tourRoomDatas = mutableListOf<TourRoomData>()
@@ -124,5 +127,14 @@ class HomeActivity : AppCompatActivity() {
 
         tourRoomAdapter.datas = tourRoomDatas
         tourRoomAdapter.notifyDataSetChanged()
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.act_home_btn_make_tour -> {
+                val intent = Intent(this, MakeTourActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }

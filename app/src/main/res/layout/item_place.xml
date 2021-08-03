@@ -10,7 +10,7 @@
         android:layout_width="153dp"
         android:layout_height="153dp"
         android:src="@drawable/img_jeju_exam"
-        android:background="@drawable/round_box_white_radius_10"
+        android:background="@drawable/round_box_white_radius_30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

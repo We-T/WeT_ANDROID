@@ -9,6 +9,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +69,7 @@
                         android:background="@drawable/round_box_stroke_white_radius_16"
                         android:gravity="center"
                         android:orientation="horizontal"
+                        android:onClick="onClick"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/act_home_text_user"
                         app:layout_constraintTop_toBottomOf="@+id/act_home_text_user">
