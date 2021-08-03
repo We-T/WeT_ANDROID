@@ -35,7 +35,10 @@ class MakeTourActivity : AppCompatActivity(), View.OnClickListener {
                 val intent = Intent(this, SelectTourLocationActivity::class.java)
                 startActivityForResult(intent, REQUEST_CODE)
             }
-            R.id.act_make_tour_btn_inviteFamily -> {}
+            R.id.act_make_tour_btn_inviteFamily -> {
+                val intent = Intent(this, InviteFamilyActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
