@@ -5,4 +5,6 @@
         부모님의 여행 가이드가 되고싶다면? 자녀모드\n자녀의 여행계획을 공유받고 싶다면? 부모님모드\n원하는 모드를 선택해 주세요
     </string>
 
+    <string name="inviteFamily">가족 초대하기</string>
+    <string name="makeTour">여행 개설하기</string>
 </resources>
