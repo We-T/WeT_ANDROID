@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.wetour.we_t.R
+import com.wetour.we_t.ui.placeInfo.PlaceInfoActivity
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -50,7 +51,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.act_signin_btn_naver -> {
-                val intent = Intent(this, SelectSignInMode::class.java)
+                val intent = Intent(this, PlaceInfoActivity::class.java)
                 startActivity(intent)
             }
 

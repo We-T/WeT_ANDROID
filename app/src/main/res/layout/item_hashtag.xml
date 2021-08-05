@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="hashTagItem"
+            type="String" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +25,8 @@
             android:lineSpacingExtra="47sp"
             android:paddingHorizontal="8dp"
             android:paddingVertical="3dp"
-            android:text="#풍경"
+            tools:text="#풍경"
+            android:text="@{hashTagItem}"
             android:textColor="#525252"
             android:textSize="13sp"
             android:textStyle="normal"
@@ -29,4 +36,4 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</Layout>
+</layout>
