@@ -6,5 +6,5 @@ data class PlaceInfoData(
     val placeName: String,
     val placeAddress: String,
     val start: Int,
-    val hashTag: ArrayList<String>
+    val hashTag: String?
 )

@@ -2,11 +2,8 @@ package com.wetour.we_t.ui.home.tourContents
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.wetour.we_t.R
 import com.wetour.we_t.databinding.ItemHashtagBinding
 
 class HashTagAdpater(private val context:Context): RecyclerView.Adapter<HashTagAdpater.HashTagViewHolder>() {

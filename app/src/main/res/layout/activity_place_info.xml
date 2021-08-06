@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="placeInfoItem"
+            name="activityPlaceInfo"
             type="com.wetour.we_t.ui.placeInfo.PlaceInfoActivity" />
     </data>
 
@@ -133,8 +133,7 @@
                     android:id="@+id/act_place_info_placeRecyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    tools:listitem="@layout/item_place_info" />
+                    android:overScrollMode="never" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

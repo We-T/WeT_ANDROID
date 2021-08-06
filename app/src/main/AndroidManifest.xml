@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WE_T">
-        <activity android:name=".ui.placeInfo.PlaceInfoActivity"></activity>
-        <activity android:name=".ui.makeTour.InviteFamilyActivity" />
-        <activity android:name=".ui.makeTour.selectTourLocation.SelectTourLocationActivity" />
-        <activity android:name=".ui.makeTour.MakeTourActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.user.SelectSignInMode" />
-        <activity android:name=".ui.user.SignInActivity">
+        <activity android:name="com.wetour.we_t.ui.placeInfo.PlaceInfoActivity"/>
+        <activity android:name="com.wetour.we_t.ui.makeTour.InviteFamilyActivity" />
+        <activity android:name="com.wetour.we_t.ui.makeTour.selectTourLocation.SelectTourLocationActivity" />
+        <activity android:name="com.wetour.we_t.ui.makeTour.MakeTourActivity" />
+        <activity android:name="com.wetour.we_t.ui.home.HomeActivity" />
+        <activity android:name="com.wetour.we_t.ui.user.SelectSignInMode" />
+        <activity android:name="com.wetour.we_t.ui.user.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
