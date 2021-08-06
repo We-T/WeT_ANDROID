@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:src="@drawable/selector_heart"
-            android:src="@drawable/selector_heart"
+            bind:isPlaceHeart="@{item.heart}"
             android:layout_marginTop="17dp"
             android:layout_marginEnd="17dp"
             app:layout_constraintEnd_toEndOf="@+id/item_place_info_image"
@@ -44,14 +44,14 @@
             android:layout_marginStart="22dp"
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:lineSpacingExtra="23sp"
-            tools:text="섭지코지"
             android:text="@{item.placeName}"
             android:textColor="@color/charcoal_grey"
             android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@id/item_place_info_place_address"
             app:layout_constraintStart_toEndOf="@+id/item_place_info_image"
-            app:layout_constraintTop_toTopOf="@+id/item_place_info_image"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="섭지코지" />
 
 
         <TextView
@@ -69,36 +69,19 @@
             app:layout_constraintStart_toStartOf="@id/item_place_info_place_name"
             app:layout_constraintBottom_toTopOf="@id/item_place_info_layout_star"/>
 
-        <LinearLayout
+        <RatingBar
             android:id="@+id/item_place_info_layout_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:orientation="horizontal"
+            android:rating="@{item.star}"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:progressBackgroundTint="@color/brownish_grey"
+            android:progressTint="#ffd400"
             app:layout_constraintTop_toBottomOf="@id/item_place_info_place_address"
             app:layout_constraintStart_toStartOf="@id/item_place_info_place_name"
-            app:layout_constraintBottom_toTopOf="@id/item_place_info_hashtag_recyclerview">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-        </LinearLayout>
+            app:layout_constraintBottom_toTopOf="@id/item_place_info_hashtag_recyclerview"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item_place_info_hashtag_recyclerview"

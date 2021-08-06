@@ -5,6 +5,6 @@ data class PlaceInfoData(
     val heart: Boolean,
     val placeName: String,
     val placeAddress: String,
-    val start: Int,
-    val hashTag: String?
+    val star: Int,
+    val hashTag: ArrayList<String>?
 )

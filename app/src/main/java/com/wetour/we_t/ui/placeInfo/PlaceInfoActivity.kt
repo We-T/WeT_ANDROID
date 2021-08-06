@@ -49,7 +49,7 @@ class PlaceInfoActivity : AppCompatActivity() {
                     "휴애리자연생활공원",
                     "제주특별자치도 서귀포시",
                     4,
-                    null
+                    arrayListOf("#자연", "#공원")
                 )
             )
             add(
@@ -58,8 +58,9 @@ class PlaceInfoActivity : AppCompatActivity() {
                     true,
                     "휴애리자연생활공원",
                     "제주특별자치도 서귀포시",
-                    4,
-                    null
+                    3,
+                    arrayListOf("#숲")
+
                 )
             )
             add(
@@ -68,8 +69,8 @@ class PlaceInfoActivity : AppCompatActivity() {
                     false,
                     "휴애리자연생활공원",
                     "제주특별자치도 서귀포시",
-                    4,
-                    null
+                    2,
+                    arrayListOf("", "")
                 )
             )
         }
