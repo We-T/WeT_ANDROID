@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.wetour.we_t.R
 import com.wetour.we_t.data.PlaceInfoData
 import com.wetour.we_t.databinding.ItemPlaceInfoBinding
 import com.wetour.we_t.ui.home.tourContents.HashTagAdpater
@@ -20,6 +21,15 @@ class PlaceInfoAdapter(private val context: Context):RecyclerView.Adapter<PlaceI
             binding.item = datas
             binding.itemPlaceInfoHashtagRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             hashTagAdpater.setHashTag(datas.hashTag)
+        }
+        init {
+            binding.itemPlaceInfoHeart.setOnClickListener {
+                if (binding.item!!.heart){
+                    binding.itemPlaceInfoHeart.setImageResource(R.drawable.ic_heart_inactive)
+                }else{
+                    binding.itemPlaceInfoHeart.setImageResource(R.drawable.ic_heart_active)
+                }
+            }
         }
     }
 

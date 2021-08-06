@@ -15,6 +15,7 @@ class PlaceInfoActivity : AppCompatActivity() {
     private lateinit var placeInfoAdapter: PlaceInfoAdapter
     private lateinit var binding: ActivityPlaceInfoBinding
     private lateinit var placeInfoViewModel: PlaceInfoViewModel
+    lateinit var placeCategoryAdapter: PlaceCategoryAdapter
 
     var datas = mutableListOf<PlaceInfoData>()
 
@@ -40,6 +41,15 @@ class PlaceInfoActivity : AppCompatActivity() {
         binding.actPlaceInfoPlaceRecyclerview.adapter = placeInfoAdapter
         binding.actPlaceInfoPlaceRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        placeCategoryAdapter = PlaceCategoryAdapter(this,
+        object :PlaceCategoryAdapter.OnClickListener{
+            override fun clickCategory(position: Int) {
+
+            }
+        })
+        binding.actPlaceInfoCategoryRecyclerview.adapter = placeCategoryAdapter
+        binding.actPlaceInfoCategoryRecyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         datas.apply {
             add(
