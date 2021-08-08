@@ -21,11 +21,10 @@ class MultiRecyclerTitleAdapter(private val context: Context): RecyclerView.Adap
         fun bind(multiRecyclerTitle: MultiRecyclerTitle) {
             title.text = multiRecyclerTitle.title
 
-            val contentsAdpater = MultiRecyclerContentsAdapter(multiRecyclerTitle.contents)
+            val contentsAdpater = MultiRecyclerContentsAdapter(context, multiRecyclerTitle.contents)
             recyclerContents.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recyclerContents.adapter = contentsAdpater
             contentsAdpater.notifyDataSetChanged()
-
         }
 
     }
