@@ -34,12 +34,13 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_place_recyclerveiw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        tools:listitem="@layout/item_hashtag"
-        app:layout_constraintTop_toBottomOf="@+id/item_place_text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_place_text"
+        tools:listitem="@layout/item_hashtag" />
 </androidx.constraintlayout.widget.ConstraintLayout>

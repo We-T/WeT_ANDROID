@@ -1,15 +1,18 @@
 package com.wetour.we_t.ui.home.tourContents
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wetour.we_t.R
-import com.wetour.we_t.ui.home.tourContents.model.RecyclerModel
+import com.wetour.we_t.data.MultiRecyclerData
 
-class MultiRecyclerContentsAdapter(private val list: List<RecyclerModel>) :
+class MultiRecyclerContentsAdapter(private val context: Context, private val datas: List<MultiRecyclerData>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // getItemViewType의 리턴값 Int가 viewType으로 넘어온다.
@@ -17,19 +20,19 @@ class MultiRecyclerContentsAdapter(private val list: List<RecyclerModel>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View?
         return when (viewType) {
-            RecyclerModel.BASIC_TYPE -> {
+            MultiRecyclerData.BASIC_TYPE -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.item_place, parent, false)
                 BasicViewHolder(view)
             }
-            RecyclerModel.HASHTAG_TYPE -> {
+            MultiRecyclerData.HASHTAG_TYPE -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.item_place_with_hashtag, parent, false)
                 HashTagViewHolder(view)
             }
-            RecyclerModel.HASHTAG_WIDE_TYPE -> {
+            MultiRecyclerData.HASHTAG_WIDE_TYPE -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.item_place_with_hashtag_wide, parent, false)
                 HashTagWideViewHolder(view)
             }
-            RecyclerModel.FESTIVAL_TYPE -> {
+            MultiRecyclerData.FESTIVAL_TYPE -> {
                 view = LayoutInflater.from(parent.context).inflate(R.layout.item_place_festival, parent, false)
                 FestivalHolder(view)
             }
@@ -38,30 +41,34 @@ class MultiRecyclerContentsAdapter(private val list: List<RecyclerModel>) :
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return datas.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val obj = list[position]
+        val obj = datas[position]
         when (obj.type) {
-            RecyclerModel.BASIC_TYPE -> {
+            MultiRecyclerData.BASIC_TYPE -> {
                 (holder as BasicViewHolder).place.text = obj.place
                 holder.image.setImageResource(obj.image)
             }
 
-            RecyclerModel.HASHTAG_TYPE -> {
+            MultiRecyclerData.HASHTAG_TYPE -> {
                 (holder as HashTagViewHolder).place.text = obj.place
                 holder.image.setImageResource(obj.image)
-                holder.hashTagData = obj.hashTag!!
+
+                val hashTagAdpater = HashTagAdpater(context)
+                holder.hashTagRecyclerView.adapter = hashTagAdpater
+                holder.hashTagRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                hashTagAdpater.setHashTag(obj.hashTag)
             }
 
-            RecyclerModel.HASHTAG_WIDE_TYPE -> {
+            MultiRecyclerData.HASHTAG_WIDE_TYPE -> {
                 (holder as HashTagWideViewHolder).place.text = obj.place
                 holder.image.setImageResource(obj.image)
                 holder.hashTagData = obj.hashTag!!
             }
 
-            RecyclerModel.FESTIVAL_TYPE -> {
+            MultiRecyclerData.FESTIVAL_TYPE -> {
                 (holder as FestivalHolder).place.text = obj.place
                 holder.image.setImageResource(obj.image)
             }
@@ -70,7 +77,7 @@ class MultiRecyclerContentsAdapter(private val list: List<RecyclerModel>) :
 
     // 여기서 받는 position은 데이터의 index다.
     override fun getItemViewType(position: Int): Int {
-        return list[position].type
+        return datas[position].type
     }
 
     inner class BasicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -81,7 +88,7 @@ class MultiRecyclerContentsAdapter(private val list: List<RecyclerModel>) :
     inner class HashTagViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.item_place_img)
         val place: TextView = itemView.findViewById(R.id.item_place_text)
-        var hashTagData = ArrayList<String>()
+        val hashTagRecyclerView = itemView.findViewById<RecyclerView>(R.id.item_place_recyclerveiw)
     }
 
     inner class HashTagWideViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
