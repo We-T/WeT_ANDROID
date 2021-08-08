@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="placeInfoItem"
+            name="activityPlaceInfo"
             type="com.wetour.we_t.ui.placeInfo.PlaceInfoActivity" />
     </data>
 
@@ -46,24 +46,24 @@
                         android:lineSpacingExtra="13sp"
                         android:textColor="@color/charcoal_grey"
                         android:textSize="17sp"
-                        tools:text="제주도" />
+                        android:text="제주도" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/act_place_info_category_recyclerview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:clipToPadding="false"
                     android:overScrollMode="never"
-                    android:paddingHorizontal="20dp" />
+                    android:paddingHorizontal="15dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/act_home_layout_search"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/round_box_white_radius_10"
                     android:elevation="3dp"
                     android:orientation="horizontal"
@@ -115,7 +115,7 @@
                         android:lineSpacingExtra="16sp"
                         android:textColor="@color/charcoal_grey"
                         android:textSize="13sp"
-                        tools:text="총 352건" />
+                        android:text="총 352건" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -126,15 +126,14 @@
                         android:lineSpacingExtra="16sp"
                         android:textColor="@color/charcoal_grey"
                         android:textSize="13sp"
-                        tools:text="최신순 > " />
+                        android:text="최신순 > " />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/act_place_info_placeRecyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    tools:listitem="@layout/item_place_info" />
+                    android:overScrollMode="never" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

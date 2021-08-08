@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="placeInfoLayout"
+            name="item"
             type="com.wetour.we_t.data.PlaceInfoData" />
     </data>
 
@@ -14,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:background="@color/white"
->
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/item_place_info_image"
@@ -23,7 +22,7 @@
             android:layout_height="120dp"
             android:layout_marginTop="25dp"
             tools:src="@drawable/img_place_info_ex1"
-            bind:urlImage="@{placeInfo.image}"
+            bind:imageUrl="@{item.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:src="@drawable/selector_heart"
-            android:src="@{placeInfo.heart ? @drawable/ic_heart_active :@drawable/ic_heart_inactive}"
+            bind:isPlaceHeart="@{item.heart}"
             android:layout_marginTop="17dp"
             android:layout_marginEnd="17dp"
             app:layout_constraintEnd_toEndOf="@+id/item_place_info_image"
@@ -45,14 +44,14 @@
             android:layout_marginStart="22dp"
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:lineSpacingExtra="23sp"
-            tools:text="섭지코지"
-            android:text="@{placeInfo.placeName}"
+            android:text="@{item.placeName}"
             android:textColor="@color/charcoal_grey"
             android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@id/item_place_info_place_address"
             app:layout_constraintStart_toEndOf="@+id/item_place_info_image"
-            app:layout_constraintTop_toTopOf="@+id/item_place_info_image"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="섭지코지" />
 
 
         <TextView
@@ -65,41 +64,24 @@
             android:textColor="@color/warm_grey"
             android:lineSpacingExtra="28sp"
             tools:text="제주특별자치도 서귀포시"
-            android:text="@{placeInfo.placeAddress}"
+            android:text="@{item.placeAddress}"
             app:layout_constraintTop_toBottomOf="@+id/item_place_info_place_name"
             app:layout_constraintStart_toStartOf="@id/item_place_info_place_name"
             app:layout_constraintBottom_toTopOf="@id/item_place_info_layout_star"/>
 
-        <LinearLayout
+        <RatingBar
             android:id="@+id/item_place_info_layout_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:orientation="horizontal"
+            android:rating="@{item.star}"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:progressBackgroundTint="@color/brownish_grey"
+            android:progressTint="#ffd400"
             app:layout_constraintTop_toBottomOf="@id/item_place_info_place_address"
             app:layout_constraintStart_toStartOf="@id/item_place_info_place_name"
-            app:layout_constraintBottom_toTopOf="@id/item_place_info_hashtag_recyclerview">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_start"/>
-        </LinearLayout>
+            app:layout_constraintBottom_toTopOf="@id/item_place_info_hashtag_recyclerview"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item_place_info_hashtag_recyclerview"
@@ -108,7 +90,6 @@
             android:layout_marginTop="10dp"
             android:overScrollMode="never"
             tools:itemCount="1"
-            bind:setItems="@{placeInfo.hashTag}"
             app:layout_constraintStart_toStartOf="@+id/item_place_info_place_name"
             app:layout_constraintTop_toBottomOf="@+id/item_place_info_layout_star"
             app:layout_constraintBottom_toBottomOf="@id/item_place_info_underline"/>

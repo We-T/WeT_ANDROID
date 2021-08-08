@@ -8,8 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.request.RequestOptions
 import com.wetour.we_t.R
 import com.wetour.we_t.data.SelectTourLocationData
 import kotlinx.android.synthetic.main.item_select_tour_location.view.*
