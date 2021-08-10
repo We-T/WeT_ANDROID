@@ -7,7 +7,8 @@
     android:orientation="vertical"
     tools:context=".ui.placeDetail.PlaceDetailActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <com.wetour.we_t.SticyScrollView
+        android:id="@+id/act_place_detail_scroll_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never">
@@ -157,10 +158,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/act_place_detail_scroll_sticky"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="28dp">
+                android:layout_marginTop="10dp"
+                android:paddingVertical="15dp">
 
                 <TextView
                     android:id="@+id/act_place_detail_btn_scroll_basicInfo"
@@ -174,6 +177,7 @@
                     android:text="기본정보"
                     android:textColor="@drawable/selector_category_textcolor"
                     android:textSize="13sp"
+                    android:onClick="onClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/act_place_detail_btn_scroll_detailInfo"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -192,6 +196,7 @@
                     android:text="상세정보"
                     android:textColor="@drawable/selector_category_textcolor"
                     android:textSize="13sp"
+                    android:onClick="onClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/act_place_detail_btn_scroll_placeInfo"
                     app:layout_constraintStart_toEndOf="@+id/act_place_detail_btn_scroll_basicInfo"
@@ -209,6 +214,7 @@
                     android:text="관광지 정보"
                     android:textColor="@drawable/selector_category_textcolor"
                     android:textSize="13sp"
+                    android:onClick="onClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/act_place_detail_btn_scroll_comment"
                     app:layout_constraintStart_toEndOf="@id/act_place_detail_btn_scroll_detailInfo"
@@ -226,6 +232,7 @@
                     android:text="여행 코멘트"
                     android:textColor="@drawable/selector_category_textcolor"
                     android:textSize="13sp"
+                    android:onClick="onClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/act_place_detail_btn_scroll_placeInfo"
@@ -234,10 +241,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/act_place_detail_pin_basicInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
                 android:fontFamily="@font/kopubworld_dotum_bold"
                 android:lineSpacingExtra="9sp"
                 android:text="기본정보"
@@ -332,6 +339,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/act_place_detail_pin_detailInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -366,6 +374,7 @@
                 android:gravity="center_vertical">
 
                 <TextView
+                    android:id="@+id/act_place_detail_pin_placeInfo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -426,6 +435,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/act_place_detail_pin_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -531,5 +541,5 @@
                 android:overScrollMode="never"
                 tools:listitem="@layout/item_comment"/>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </com.wetour.we_t.SticyScrollView>
 </LinearLayout>

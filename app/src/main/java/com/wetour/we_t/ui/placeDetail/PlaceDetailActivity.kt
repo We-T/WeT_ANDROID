@@ -1,12 +1,16 @@
 package com.wetour.we_t.ui.placeDetail
 
+import android.animation.ObjectAnimator
+import android.graphics.Rect
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
+import com.wetour.we_t.SticyScrollView
 import com.wetour.we_t.data.CommentData
 import com.wetour.we_t.data.PlaceDetailData
 import com.wetour.we_t.ui.home.tourContents.HashTagAdpater
@@ -28,6 +32,8 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
         // Comment 부분의 User Image, Name, Rating 최상위로 올리기
         act_place_detail_layout_commentUser.bringToFront()
 
+        initial()
+        setScroll()
         setRv()
     }
 
@@ -35,7 +41,56 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.act_place_detail_btn_close_placeInfo -> {
-                act_place_detail_text_placeInfo.isSingleLine = !act_place_detail_text_placeInfo.isSingleLine
+                act_place_detail_text_placeInfo.isSingleLine =
+                    !act_place_detail_text_placeInfo.isSingleLine
+            }
+
+            R.id.act_place_detail_btn_scroll_basicInfo -> {
+                act_place_detail_btn_scroll_basicInfo.isSelected = true
+                act_place_detail_btn_scroll_detailInfo.isSelected = false
+                act_place_detail_btn_scroll_placeInfo.isSelected = false
+                act_place_detail_btn_scroll_comment.isSelected = false
+                act_place_detail_scroll_main.scrollToView(act_place_detail_pin_basicInfo)
+            }
+            R.id.act_place_detail_btn_scroll_detailInfo -> {
+                act_place_detail_btn_scroll_basicInfo.isSelected = false
+                act_place_detail_btn_scroll_detailInfo.isSelected = true
+                act_place_detail_btn_scroll_placeInfo.isSelected = false
+                act_place_detail_btn_scroll_comment.isSelected = false
+                act_place_detail_scroll_main.scrollToView(act_place_detail_pin_detailInfo)
+            }
+            R.id.act_place_detail_btn_scroll_placeInfo -> {
+                act_place_detail_btn_scroll_basicInfo.isSelected = false
+                act_place_detail_btn_scroll_detailInfo.isSelected = false
+                act_place_detail_btn_scroll_placeInfo.isSelected = true
+                act_place_detail_btn_scroll_comment.isSelected = false
+                act_place_detail_scroll_main.scrollToView(act_place_detail_pin_placeInfo)
+            }
+            R.id.act_place_detail_btn_scroll_comment -> {
+                act_place_detail_btn_scroll_basicInfo.isSelected = false
+                act_place_detail_btn_scroll_detailInfo.isSelected = false
+                act_place_detail_btn_scroll_placeInfo.isSelected = false
+                act_place_detail_btn_scroll_comment.isSelected = true
+                act_place_detail_scroll_main.scrollToView(act_place_detail_pin_comment)
+            }
+        }
+    }
+
+    private fun initial() {
+        act_place_detail_btn_scroll_basicInfo.isSelected = true
+        act_place_detail_btn_scroll_detailInfo.isSelected = false
+        act_place_detail_btn_scroll_placeInfo.isSelected = false
+        act_place_detail_btn_scroll_comment.isSelected = false
+    }
+
+    private fun setScroll() {
+        act_place_detail_scroll_main.run {
+            header = act_place_detail_scroll_sticky
+            stickListener = { _ ->
+                Log.d("LOGGER_TAG", "stickListener")
+            }
+            freeListener = { _ ->
+                Log.d("LOGGER_TAG", "freeListener")
             }
         }
     }
@@ -45,11 +100,14 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
         placeDetailAdapter = PlaceDetailAdapter(this)
         commentAdpater = CommentAdpater(this)
         act_place_detail_recyclerview_hashTag.adapter = hashTagAdpater
-        act_place_detail_recyclerview_hashTag.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        act_place_detail_recyclerview_hashTag.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         act_place_detail_recyclerview_detailInfo.adapter = placeDetailAdapter
-        act_place_detail_recyclerview_detailInfo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        act_place_detail_recyclerview_detailInfo.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         act_place_detail_recyclerview_comment.adapter = commentAdpater
-        act_place_detail_recyclerview_comment.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        act_place_detail_recyclerview_comment.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         setData()
     }
 
@@ -61,8 +119,8 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
         detailData.apply {
             add(
                 PlaceDetailData(
-                "문의 및 안내",
-                "064-732-2114"
+                    "문의 및 안내",
+                    "064-732-2114"
                 )
             )
             add(
@@ -190,5 +248,29 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
 
         commentAdpater.datas = commentData
         commentAdpater.notifyDataSetChanged()
+    }
+
+    private fun SticyScrollView.computeDistanceToView(view: View): Int {
+        return kotlin.math.abs(
+            calculateRectOnScreen(this).top - (this.scrollY + calculateRectOnScreen(view).top)
+        )
+    }
+
+    private fun calculateRectOnScreen(view: View): Rect {
+        val location = IntArray(2)
+        view.getLocationOnScreen(location)
+        return Rect(
+            location[0],
+            location[1],
+            location[0] + view.measuredWidth,
+            location[1] + view.measuredHeight
+        )
+    }
+
+    private fun SticyScrollView.scrollToView(view: View) {
+        val y = computeDistanceToView(view)
+        ObjectAnimator.ofInt(this, "scrollY", y - act_place_detail_scroll_sticky.height).apply {
+            duration = 1000L // 스크롤이 지속되는 시간을 설정한다. (1000 밀리초 == 1초)
+        }.start()
     }
 }
