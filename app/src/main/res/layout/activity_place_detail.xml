@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.placeDetail.PlaceDetailActivity">
+
+    <com.wetour.we_t.SticyScrollView
+        android:id="@+id/act_place_detail_scroll_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_box_white_radius_10"
+                android:elevation="3dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="25dp">
+
+                <RelativeLayout
+                    android:id="@+id/act_place_detail_layout_top_image"
+                    android:layout_width="0dp"
+                    android:layout_height="230dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/act_place_detail_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_wet_reco1" />
+
+                    <ImageView
+                        android:id="@+id/act_place_detail_btn_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toStartOf="@id/act_place_detail_btn_heart"
+                        android:src="@drawable/ic_share" />
+
+                    <ImageView
+                        android:id="@+id/act_place_detail_btn_heart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/act_place_detail_btn_share"
+                        android:layout_alignBottom="@id/act_place_detail_btn_share"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/selector_heart" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/act_place_detail_text_placeName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/kopubworld_dotum_bold"
+                    android:lineSpacingExtra="5sp"
+                    android:text="휴애리자연생활공원"
+                    android:textColor="@color/charcoal_grey"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/act_place_detail_layout_top_image" />
+
+                <RatingBar
+                    android:id="@+id/act_place_detail_rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/brownish_grey"
+                    android:progressTint="#ffd400"
+                    android:rating="3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_placeName" />
+
+                <TextView
+                    android:id="@+id/act_place_detail_textview1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="13sp"
+                    android:text="관광지"
+                    android:textColor="@color/warm_grey"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@+id/act_place_detail_rating"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/act_place_detail_text_runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="13sp"
+                    android:text="30분 소요"
+                    android:textColor="#082542"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/act_place_detail_textview1"
+                    app:layout_constraintTop_toTopOf="@+id/act_place_detail_textview1"
+                    app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_textview1"/>
+
+                <TextView
+                    android:id="@+id/act_place_detail_text_congestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/kopubworld_dotum_bold"
+                    android:lineSpacingExtra="13sp"
+                    android:text="여유"
+                    android:textColor="#1a7e14"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/act_place_detail_text_runtime"
+                    app:layout_constraintTop_toTopOf="@+id/act_place_detail_text_runtime"
+                    app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_text_runtime"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/act_place_detail_recyclerview_hashTag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@+id/act_place_detail_textview1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/background_gradient_round_all_btn_6"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:gravity="center"
+                    android:paddingVertical="9dp"
+                    android:text="제주도 여행 개설하기"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@+id/act_place_detail_recyclerview_hashTag"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/act_place_detail_scroll_sticky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingVertical="15dp">
+
+                <TextView
+                    android:id="@+id/act_place_detail_btn_scroll_basicInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_detail_button_background"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="16sp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="5dp"
+                    android:text="기본정보"
+                    android:textColor="@drawable/selector_category_textcolor"
+                    android:textSize="13sp"
+                    android:onClick="onClick"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/act_place_detail_btn_scroll_detailInfo"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/act_place_detail_btn_scroll_detailInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_detail_button_background"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="16sp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="5dp"
+                    android:text="상세정보"
+                    android:textColor="@drawable/selector_category_textcolor"
+                    android:textSize="13sp"
+                    android:onClick="onClick"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/act_place_detail_btn_scroll_placeInfo"
+                    app:layout_constraintStart_toEndOf="@+id/act_place_detail_btn_scroll_basicInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/act_place_detail_btn_scroll_placeInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_detail_button_background"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="16sp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="5dp"
+                    android:text="관광지 정보"
+                    android:textColor="@drawable/selector_category_textcolor"
+                    android:textSize="13sp"
+                    android:onClick="onClick"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/act_place_detail_btn_scroll_comment"
+                    app:layout_constraintStart_toEndOf="@id/act_place_detail_btn_scroll_detailInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/act_place_detail_btn_scroll_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_detail_button_background"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="16sp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="5dp"
+                    android:text="여행 코멘트"
+                    android:textColor="@drawable/selector_category_textcolor"
+                    android:textSize="13sp"
+                    android:onClick="onClick"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/act_place_detail_btn_scroll_placeInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/act_place_detail_pin_basicInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:lineSpacingExtra="9sp"
+                android:text="기본정보"
+                android:textColor="@color/charcoal_grey"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_box_white_radius_10"
+                android:elevation="3dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="26dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworld_dotum_bold"
+                        android:lineSpacingExtra="7sp"
+                        android:text="우편번호"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworld_dotum_medium"
+                        android:lineSpacingExtra="7sp"
+                        android:text="63608"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworld_dotum_bold"
+                        android:lineSpacingExtra="7sp"
+                        android:text="홈페이지"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworld_dotum_medium"
+                        android:lineSpacingExtra="7sp"
+                        android:text="http://www.hueree.com"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworld_dotum_bold"
+                        android:lineSpacingExtra="7sp"
+                        android:text="주소"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworld_dotum_medium"
+                        android:lineSpacingExtra="7sp"
+                        android:text="제주특별자치도 서귀포시 남원읍 신례동로 256 "
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/act_place_detail_pin_detailInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:lineSpacingExtra="9sp"
+                android:text="상세정보"
+                android:textColor="@color/charcoal_grey"
+                android:textSize="17sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/act_place_detail_recyclerview_detailInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:overScrollMode="never"
+                tools:listitem="@layout/item_place_detail_info" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="30dp"
+                android:background="@color/warm_grey" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/act_place_detail_pin_placeInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/kopubworld_dotum_bold"
+                    android:lineSpacingExtra="9sp"
+                    android:text="관광지 정보"
+                    android:textColor="@color/charcoal_grey"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toStartOf="@+id/act_place_detail_btn_listenAudio"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/act_place_detail_btn_listenAudio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_gradient_round_all_btn_6"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="4sp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:text="음성 설명 듣기"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/act_place_detail_text_placeInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/kopubworld_dotum_medium"
+                android:lineSpacingExtra="7sp"
+                android:singleLine="false"
+                android:text="@string/placeDetailExam"
+                android:textColor="@color/greyish_brown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/act_place_detail_btn_close_placeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/round_stroke_charcoa_grey_radius_20"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:gravity="center"
+                android:lineSpacingExtra="8sp"
+                android:paddingVertical="9dp"
+                android:text="설명 접기"
+                android:onClick="onClick"
+                android:textColor="@color/greyish_brown"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/act_place_detail_pin_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:lineSpacingExtra="9sp"
+                android:text="여행 코멘트"
+                android:textColor="@color/charcoal_grey"
+                android:textSize="17sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp">
+
+                <LinearLayout
+                    android:id="@+id/act_place_detail_layout_commentBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/round_box_white_radius_10"
+                    android:elevation="3dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="48dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/kopubworld_dotum_medium"
+                        android:hint="여행지에 대한 소중한 코멘트를 남겨주세요"
+                        android:lineSpacingExtra="5sp"
+                        android:paddingVertical="17dp"
+                        android:textColor="@color/brownish_grey"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/background_gradient_round_all_btn_6"
+                        android:fontFamily="@font/kopubworld_dotum_medium"
+                        android:lineSpacingExtra="2sp"
+                        android:paddingHorizontal="11dp"
+                        android:paddingVertical="3dp"
+                        android:text="등록"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/act_place_detail_layout_commentUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/act_place_detail_layout_commentBox"
+                    app:layout_constraintTop_toTopOf="@id/act_place_detail_layout_commentBox">
+
+                    <ImageView
+                        android:id="@+id/act_place_detail_image_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/dasole" />
+
+                    <TextView
+                        android:id="@+id/act_place_detail_text_userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:fontFamily="@font/kopubworld_dotum_bold"
+                        android:lineSpacingExtra="7sp"
+                        android:text="변다솔"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="13sp" />
+
+                    <RatingBar
+                        android:id="@+id/act_place_detail_rating_user"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:numStars="5"
+                        android:progressBackgroundTint="@color/brownish_grey"
+                        android:progressTint="#ffd400"
+                        android:rating="0" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/act_place_detail_recyclerview_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="70dp"
+                android:overScrollMode="never"
+                tools:listitem="@layout/item_comment"/>
+        </LinearLayout>
+    </com.wetour.we_t.SticyScrollView>
+</LinearLayout>
