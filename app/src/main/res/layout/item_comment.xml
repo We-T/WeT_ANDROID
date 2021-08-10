@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/item_comment_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/dasole"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_comment_text_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:lineSpacingExtra="7sp"
+        android:text="김지현"
+        android:textColor="@color/greyish_brown"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/item_comment_text_date"
+        app:layout_constraintStart_toEndOf="@+id/item_comment_image"
+        app:layout_constraintTop_toTopOf="@+id/item_comment_image"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/item_comment_text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:lineSpacingExtra="7sp"
+        android:text="2021.07.29"
+        android:textColor="@color/greyish_brown"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_comment_image"
+        app:layout_constraintStart_toStartOf="@+id/item_comment_text_userName"
+        app:layout_constraintTop_toBottomOf="@+id/item_comment_text_userName" />
+
+    <RatingBar
+        android:id="@+id/item_comment_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/brownish_grey"
+        android:progressTint="#ffd400"
+        android:rating="3"
+        app:layout_constraintTop_toBottomOf="@id/item_comment_image"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_comment_text_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:textSize="14sp"
+        android:textColor="@color/brownish_grey"
+        android:lineSpacingExtra="8sp"
+        android:text="남자친구랑 사진 찍으려고 방문했어요:)
+인스타에서 봤던 것 보다 훨씬 예쁘고 좋아요 사진명소!!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_comment_rating"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/warm_grey"
+        app:layout_constraintTop_toBottomOf="@id/item_comment_text_comment"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
