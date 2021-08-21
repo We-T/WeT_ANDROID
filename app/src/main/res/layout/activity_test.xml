@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="signin"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSelectSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="selectSignIn"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="home"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMakeTour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="makeTour"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPlaceHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="placeHome"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPlaceInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="placeInfo"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPlaceDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="placeDetail"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMakeSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="makeSchedule"
+        android:onClick="onClick"/>
+
+
+</LinearLayout>
