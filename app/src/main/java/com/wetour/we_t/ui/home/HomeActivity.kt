@@ -12,6 +12,7 @@ import com.wetour.we_t.data.MultiRecyclerData
 import com.wetour.we_t.ui.home.tourContents.model.MultiRecyclerTitle
 import com.wetour.we_t.ui.home.tourRoom.TourRoomAdapter
 import com.wetour.we_t.ui.makeTour.MakeTourActivity
+import com.wetour.we_t.ui.myPage.MyPageActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() , View.OnClickListener{
@@ -138,6 +139,11 @@ class HomeActivity : AppCompatActivity() , View.OnClickListener{
         when(v?.id) {
             R.id.act_home_btn_make_tour -> {
                 val intent = Intent(this, MakeTourActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.act_home_btn_mypage -> {
+                val intent = Intent(this, MyPageActivity::class.java)
                 startActivity(intent)
             }
         }

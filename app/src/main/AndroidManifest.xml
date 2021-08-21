@@ -11,7 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WE_T">
-        <activity android:name=".ui.makeSchedule.MakeScheduleActivity"></activity>
+        <activity android:name=".ui.myPage.MyPageActivity"></activity>
+        <activity android:name=".TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.makeSchedule.MakeScheduleActivity" />
         <activity android:name=".ui.placeDetail.PlaceDetailActivity" />
         <activity android:name=".ui.placeHome.PlaceHomeActivity" />
         <activity android:name=".ui.placeInfo.PlaceInfoActivity" />
@@ -20,13 +28,7 @@
         <activity android:name=".ui.makeTour.MakeTourActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.user.SelectSignInMode" />
-        <activity android:name=".ui.user.SignInActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.user.SignInActivity"></activity>
     </application>
 
 </manifest>
