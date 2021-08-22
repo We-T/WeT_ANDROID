@@ -3,6 +3,7 @@ package com.wetour.we_t.ui.makeSchedule
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -72,6 +73,8 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
                 supportFragmentManager,
                 3
             )
+
+        viewPager.measure(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
 
         viewPager.offscreenPageLimit = 2
         viewPager.currentItem = 0

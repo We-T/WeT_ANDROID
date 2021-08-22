@@ -6,82 +6,102 @@
     android:layout_height="match_parent"
     tools:context=".ui.makeSchedule.MakeScheduleActivity">
 
-    <ImageView
-        android:id="@+id/act_make_schedule_btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/ic_back_black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/act_make_schedule_text_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/kopubworld_dotum_bold"
-        android:lineSpacingExtra="8sp"
-        android:text="사랑하는 엄빠의 제주여행"
-        android:textColor="@color/charcoal_grey"
-        android:textSize="17sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_btn_back" />
-
-    <ImageView
-        android:id="@+id/act_make_schedule_btn_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:src="@drawable/ic_btn_edit"
-        app:layout_constraintBottom_toBottomOf="@id/act_make_schedule_text_title"
-        app:layout_constraintStart_toEndOf="@id/act_make_schedule_text_title"
-        app:layout_constraintTop_toTopOf="@id/act_make_schedule_text_title" />
-
-    <TextView
-        android:id="@+id/act_make_schedule_text_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/kopubworld_dotum_medium"
-        android:lineSpacingExtra="10sp"
-        android:text="08.02~08.05"
-        android:textColor="@color/greyish_brown"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@id/act_make_schedule_text_title"
-        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_title" />
-
-    <RelativeLayout
-        android:id="@+id/act_make_schedule_map"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
-        android:layout_height="197dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_date" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/act_make_schedule_tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/round_box_very_light_pink_radius_45"
-        app:tabBackground="@drawable/selector_tab_background"
-        app:tabIndicator="@null"
-        app:tabTextColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_map" />
-
-    <com.wetour.we_t.ui.makeSchedule.CustomViewPager
-        android:id="@+id/act_make_schedule_viewpager"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_tab" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/act_make_schedule_btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_back_black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/act_make_schedule_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:lineSpacingExtra="8sp"
+                android:text="사랑하는 엄빠의 제주여행"
+                android:textColor="@color/charcoal_grey"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_btn_back" />
+
+            <ImageView
+                android:id="@+id/act_make_schedule_btn_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/ic_btn_edit"
+                app:layout_constraintBottom_toBottomOf="@id/act_make_schedule_text_title"
+                app:layout_constraintStart_toEndOf="@id/act_make_schedule_text_title"
+                app:layout_constraintTop_toTopOf="@id/act_make_schedule_text_title" />
+
+            <TextView
+                android:id="@+id/act_make_schedule_text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopubworld_dotum_medium"
+                android:lineSpacingExtra="10sp"
+                android:text="08.02~08.05"
+                android:textColor="@color/greyish_brown"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@id/act_make_schedule_text_title"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_title" />
+
+            <RelativeLayout
+                android:id="@+id/act_make_schedule_map"
+                android:layout_width="0dp"
+                android:layout_height="197dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_date" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/act_make_schedule_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/round_box_very_light_pink_radius_45"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_map"
+                app:layout_constraintBottom_toTopOf="@id/act_make_schedule_viewpager"
+                app:tabBackground="@drawable/selector_tab_background"
+                app:tabIndicator="@null"
+                app:tabTextColor="@color/white" />
+
+            <com.wetour.we_t.ui.makeSchedule.CustomViewPager
+                android:id="@+id/act_make_schedule_viewpager"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_tab" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
