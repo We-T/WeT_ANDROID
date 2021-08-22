@@ -3,11 +3,12 @@ package com.wetour.we_t.ui.placeDetail
 import android.animation.ObjectAnimator
 import android.graphics.Rect
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
 import com.wetour.we_t.SticyScrollView
@@ -15,6 +16,10 @@ import com.wetour.we_t.data.CommentData
 import com.wetour.we_t.data.PlaceDetailData
 import com.wetour.we_t.ui.home.tourContents.HashTagAdpater
 import kotlinx.android.synthetic.main.activity_place_detail.*
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
+import net.daum.mf.map.api.MapView
+
 
 class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -33,6 +38,7 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
         act_place_detail_layout_commentUser.bringToFront()
 
         initial()
+        setMap()
         setScroll()
         setRv()
     }
@@ -81,6 +87,30 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
         act_place_detail_btn_scroll_detailInfo.isSelected = false
         act_place_detail_btn_scroll_placeInfo.isSelected = false
         act_place_detail_btn_scroll_comment.isSelected = false
+    }
+
+    private fun setMap() {
+        val mapView = MapView(this)
+        val marker = MapPOIItem()
+        val mapViewContainer = findViewById<View>(R.id.act_place_detail_map) as ViewGroup
+
+        mapViewContainer.addView(mapView)
+
+        mapView.setMapCenterPoint(
+            MapPoint.mapPointWithGeoCoord(
+                33.308916574785165, 126.63376954043169
+            ), false
+        )
+
+        marker.itemName = "Default Marker"
+        marker.tag = 0
+        marker.mapPoint = MapPoint.mapPointWithGeoCoord(33.308916574785165, 126.63376954043169)
+        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+
+//        marker.selectedMarkerType =
+//            MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+
+        mapView.addPOIItem(marker)
     }
 
     private fun setScroll() {

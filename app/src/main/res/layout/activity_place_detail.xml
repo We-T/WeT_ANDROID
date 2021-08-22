@@ -240,10 +240,18 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <RelativeLayout
+                android:id="@+id/act_place_detail_map"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="20dp"/>
+
             <TextView
                 android:id="@+id/act_place_detail_pin_basicInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/kopubworld_dotum_bold"
                 android:lineSpacingExtra="9sp"
