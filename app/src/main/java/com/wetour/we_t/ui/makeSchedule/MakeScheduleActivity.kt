@@ -1,16 +1,15 @@
 package com.wetour.we_t.ui.makeSchedule
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import com.wetour.we_t.R
-import kotlinx.android.synthetic.main.activity_make_schedule.*
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -18,42 +17,19 @@ import net.daum.mf.map.api.MapView
 
 class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
 
-    var radioButtonList = arrayListOf<RadioButton>()
+    //    var radioButtonList = arrayListOf<RadioButton>()
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager
+    private lateinit var scheduleAdapter: ScheduleAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_schedule)
 
         setMap()
-        for (i in 1..3) {
-            val radioButton = RadioButton(this)
-            radioButton.text = "DAY$i"
-            radioButton.id = i
-            radioButton.gravity = Gravity.CENTER
-            radioButton.setBackgroundResource(R.drawable.background_gradient_round_all_btn_45)
-            radioButton.setButtonDrawable(0)
-            radioButton.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
-            radioButton.textSize = 12F
-            radioButtonList.add(radioButton)
-            val rprms: RadioGroup.LayoutParams =
-                RadioGroup.LayoutParams(
-                    RadioGroup.LayoutParams.MATCH_PARENT,
-                    RadioGroup.LayoutParams.WRAP_CONTENT,
-                    1f
-                )
-
-            act_make_schedule_radioGroup.addView(radioButton, rprms)
-        }
-
-        act_make_schedule_radioGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                1 -> Toast.makeText(this, radioButtonList[checkedId].text, Toast.LENGTH_SHORT)
-                    .show()
-                2 -> Toast.makeText(this, radioButtonList[checkedId].text, Toast.LENGTH_SHORT)
-                    .show()
-                1 -> Toast.makeText(this, radioButtonList[checkedId].text, Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
+//        setRadioButton()
+        setTab()
+        setScheduleAdapter()
 
     }
 
@@ -76,6 +52,50 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
         marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
 
         mapView.addPOIItem(marker)
+    }
+
+    private fun setTab() {
+
+        tabLayout = findViewById(R.id.act_make_schedule_tab)
+
+        for (i in 0..2) {
+            tabLayout.addTab(tabLayout.newTab().setText("DAY${i+1}"))
+        }
+
+
+    }
+
+    private fun setScheduleAdapter() {
+        viewPager = findViewById(R.id.act_make_schedule_viewpager)
+
+        viewPager.adapter =
+            ScheduleAdapter(
+                supportFragmentManager,
+                3
+            )
+
+        viewPager.measure(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+
+        viewPager.offscreenPageLimit = 2
+        viewPager.currentItem = 0
+
+        viewPager.addOnPageChangeListener(
+            TabLayout.TabLayoutOnPageChangeListener(
+                tabLayout
+            )
+        )
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+            }
+        })
     }
 
     override fun onClick(v: View?) {
