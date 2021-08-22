@@ -24,11 +24,11 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/kopubworld_dotum_bold"
         android:lineSpacingExtra="8sp"
+        android:text="사랑하는 엄빠의 제주여행"
         android:textColor="@color/charcoal_grey"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_btn_back"
-        android:text="사랑하는 엄빠의 제주여행" />
+        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_btn_back" />
 
     <ImageView
         android:id="@+id/act_make_schedule_btn_edit"
@@ -46,11 +46,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/kopubworld_dotum_medium"
         android:lineSpacingExtra="10sp"
+        android:text="08.02~08.05"
         android:textColor="@color/greyish_brown"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@id/act_make_schedule_text_title"
-        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_title"
-        android:text="08.02~08.05" />
+        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_title" />
 
     <RelativeLayout
         android:id="@+id/act_make_schedule_map"
@@ -61,15 +61,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_date" />
 
-    <RadioGroup
-        android:id="@+id/act_make_schedule_radioGroup"
-        android:layout_width="0dp"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/act_make_schedule_tab"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/round_box_very_light_pink_radius_45"
-        android:orientation="horizontal"
+        app:tabBackground="@drawable/selector_tab_background"
+        app:tabIndicator="@null"
+        app:tabTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_make_schedule_map"/>
+        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_map" />
+
+    <com.wetour.we_t.ui.makeSchedule.CustomViewPager
+        android:id="@+id/act_make_schedule_viewpager"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_tab" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
