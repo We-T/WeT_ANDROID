@@ -56,6 +56,8 @@ dependencies {
     implementation "com.kakao.sdk:v2-link:2.0.5" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.0.5" // 카카오내비
 
+    compile files('libs/libDaumMapAndroid.jar')
+
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     // LiveData
