@@ -32,4 +32,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text1"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/round_box_white_radius_10"
+        android:elevation="3dp"
+        android:paddingBottom="30dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/act_make_schedule_btn_addSchedule">
+
+        <TextView
+            android:id="@+id/frag_schedule_weather_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kopubworld_dotum_bold"
+            android:lineSpacingExtra="10sp"
+            android:text="08월 02일 제주도 날씨"
+            android:textColor="#3a3a3a"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/frag_schedule_weather_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_weather_sun"
+            app:layout_constraintEnd_toStartOf="@id/frag_schedule_weather_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_schedule_weather_title" />
+
+        <TextView
+            android:id="@+id/frag_schedule_weather_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:lineSpacingExtra="1sp"
+            android:text="맑음, 전 날보다 1˚ 높아요\n19˚/29˚ 체감온도 19˚\n자외선 7높음"
+            android:textColor="@color/greyish_brown"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frag_schedule_weather_image"
+            app:layout_constraintTop_toBottomOf="@id/frag_schedule_weather_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
