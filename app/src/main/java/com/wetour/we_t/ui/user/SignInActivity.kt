@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.wetour.we_t.R
+import com.wetour.we_t.ui.addSchedule.AddScheduleActivity
 import com.wetour.we_t.ui.makeSchedule.MakeScheduleActivity
 import com.wetour.we_t.ui.placeDetail.PlaceDetailActivity
 import java.security.MessageDigest
@@ -62,7 +63,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.act_signin_btn_naver -> {
-                val intent = Intent(this, PlaceDetailActivity::class.java)
+                val intent = Intent(this, AddScheduleActivity::class.java)
                 startActivity(intent)
             }
 
