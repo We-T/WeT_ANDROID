@@ -107,6 +107,7 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
                     "350km",
                     "숙소",
                     null,
+                    null,
                     null
                 )
             )
@@ -118,7 +119,8 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
                     "350km",
                     "음식점",
                     "30분 소요",
-                    "여유"
+                    "여유",
+                    null
                 )
             )
             add(
@@ -129,7 +131,8 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
                     "350km",
                     "관광지",
                     "2시간 소요",
-                    "혼잡"
+                    "혼잡",
+                    "엄마 아빠 ! 입구까지는 택시타는게 편하대~"
                 )
             )
             add(
@@ -139,6 +142,7 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
                     "제주 무지개 하우스",
                     "350km",
                     "숙소",
+                    null,
                     null,
                     null
                 )
