@@ -3,11 +3,13 @@ package com.wetour.we_t.ui.makeSchedule
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
+import com.wetour.we_t.data.DayBtnData
+import com.wetour.we_t.data.ScheduleItemData
+import kotlinx.android.synthetic.main.activity_make_schedule.*
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -15,17 +17,17 @@ import net.daum.mf.map.api.MapView
 
 class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
-    private lateinit var scheduleDayAdapter: ScheduleDayAdapter
+    lateinit var scheduleItemAdapter: ScheduleItemAdapter
+    lateinit var scheduleDayAdapter: ScheduleDayAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_schedule)
 
 //        setMap()
-        setTab()
-        setScheduleAdapter()
+        setDayRv()
+        setRv()
+        setData()
 
     }
 
@@ -50,54 +52,99 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
         mapView.addPOIItem(marker)
     }
 
-    private fun setTab() {
-
-        tabLayout = findViewById(R.id.act_make_schedule_tab)
-
-        for (i in 0..2) {
-            tabLayout.addTab(tabLayout.newTab().setText("DAY${i+1}"))
-        }
-
-
-    }
-
-    private fun setScheduleAdapter() {
-        viewPager = findViewById(R.id.act_make_schedule_viewpager)
-
-        viewPager.adapter =
-            ScheduleDayAdapter(
-                supportFragmentManager,
-                3
-            )
-
-        viewPager.measure(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
-
-        viewPager.offscreenPageLimit = 2
-        viewPager.currentItem = 0
-
-        viewPager.addOnPageChangeListener(
-            TabLayout.TabLayoutOnPageChangeListener(
-                tabLayout
-            )
-        )
-
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                viewPager.currentItem = tab.position
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-            }
-        })
-    }
-
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.act_make_schedule_btn_back -> finish()
         }
+    }
+
+
+    private fun setDayRv() {
+        scheduleDayAdapter =
+            ScheduleDayAdapter(this, object : ScheduleDayAdapter.OnClickDayListener {
+                override fun onClickDay(position: Int) {
+
+                    Toast.makeText(this@MakeScheduleActivity, position.toString(), Toast.LENGTH_SHORT).show()
+
+                    for (i in 0..10) {
+                        scheduleDayAdapter.days[i].selected = false
+                    }
+
+                    scheduleDayAdapter.days[position].selected = true
+                    scheduleDayAdapter.notifyDataSetChanged()
+                }
+            })
+        act_make_schedule_day_recyclerview.adapter = scheduleDayAdapter
+        act_make_schedule_day_recyclerview.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    private fun setRv() {
+        scheduleItemAdapter = ScheduleItemAdapter(this)
+        act_make_schedule_frame_recyclerview.adapter = scheduleItemAdapter
+        act_make_schedule_frame_recyclerview.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun setData() {
+
+        for (i in 0..10) {
+            if (i == 0) {
+                scheduleDayAdapter.days.add(DayBtnData("DAY"+(i+1).toString(), true))
+            } else {
+                scheduleDayAdapter.days.add(DayBtnData("DAY"+(i+1).toString(), false))
+            }
+        }
+
+        scheduleDayAdapter.notifyDataSetChanged()
+
+        scheduleItemAdapter.datas.apply {
+            add(
+                ScheduleItemData(
+                    1,
+                    "14.3km",
+                    "제주 무지개 하우스",
+                    "350km",
+                    "숙소",
+                    null,
+                    null
+                )
+            )
+            add(
+                ScheduleItemData(
+                    2,
+                    "17.3km",
+                    "칠돈가 함덕 점",
+                    "350km",
+                    "음식점",
+                    "30분 소요",
+                    "여유"
+                )
+            )
+            add(
+                ScheduleItemData(
+                    3,
+                    "2.3km",
+                    "성산일출봉",
+                    "350km",
+                    "관광지",
+                    "2시간 소요",
+                    "혼잡"
+                )
+            )
+            add(
+                ScheduleItemData(
+                    4,
+                    "",
+                    "제주 무지개 하우스",
+                    "350km",
+                    "숙소",
+                    null,
+                    null
+                )
+            )
+        }
+        scheduleItemAdapter.notifyDataSetChanged()
     }
 
 }
