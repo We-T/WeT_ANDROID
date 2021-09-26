@@ -7,5 +7,6 @@ data class ScheduleItemData(
     val item_distance: String,
     val item_kind: String,
     val item_runningTime: String?,
-    val item_congestion: String?
+    val item_congestion: String?,
+    val item_memo: String?
 )

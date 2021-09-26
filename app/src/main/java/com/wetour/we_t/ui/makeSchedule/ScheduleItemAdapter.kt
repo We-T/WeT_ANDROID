@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.wetour.we_t.R
@@ -24,6 +25,9 @@ class ScheduleItemAdapter(private val context:Context): RecyclerView.Adapter<Sch
         val itemKind = itemview.findViewById<TextView>(R.id.item_schedule_item_kind)
         val itemRunningTime = itemview.findViewById<TextView>(R.id.item_schedule_item_runningTime)
         val itemCongestion = itemview.findViewById<TextView>(R.id.item_schedule_item_congestion)
+        val itemMemo = itemview.findViewById<TextView>(R.id.item_schedule_memo)
+
+        val const = itemview.findViewById<ConstraintLayout>(R.id.item_schedule_item)
 
         fun bind(scheduleItemData: ScheduleItemData) {
             number.text = scheduleItemData.number.toString()
@@ -31,11 +35,13 @@ class ScheduleItemAdapter(private val context:Context): RecyclerView.Adapter<Sch
             itemLocation.text = scheduleItemData.item_location
             itemDistance.text = scheduleItemData.item_distance
             itemKind.text = scheduleItemData.item_kind
+            itemMemo.text = scheduleItemData.item_memo
 
             if (!scheduleItemData.item_runningTime.isNullOrBlank()){
                 // 데이터 있다면
                 itemRunningTime.text = scheduleItemData.item_runningTime
             }
+
             if (!scheduleItemData.item_congestion.isNullOrBlank()){
                 // 데이터 있다면
                 itemCongestion.text = scheduleItemData.item_congestion
@@ -44,6 +50,16 @@ class ScheduleItemAdapter(private val context:Context): RecyclerView.Adapter<Sch
                 } else {
                     itemCongestion.setTextColor(ContextCompat.getColor(context, R.color.reddish))
                 }
+            }
+
+            if (!scheduleItemData.item_memo.isNullOrBlank()) {
+                // 데이터 있다면
+                itemMemo.visibility = View.VISIBLE
+                const.isSelected = true
+            } else {
+                itemMemo.visibility = View.GONE
+                const.isSelected = false
+
             }
         }
     }
