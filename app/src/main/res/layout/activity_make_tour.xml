@@ -214,21 +214,14 @@
                         android:textSize="17sp"
                         android:text="가족 초대" />
 
-                    <TextView
-                        android:id="@+id/act_make_tour_btn_inviteFamily"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/act_make_tour_recyclerview_family"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/round_box_very_light_pink_radius_13"
-                        android:fontFamily="@font/kopubworld_dotum_medium"
-                        android:hint="여행 계획을 전송할 가족을 초대해주세요"
-                        android:lineSpacingExtra="8sp"
-                        android:onClick="onClick"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="8dp"
-                        android:textColor="@color/brownish_grey"
-                        android:textSize="14sp"
-                        android:textStyle="normal" />
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="30dp"
+                        android:overScrollMode="never"
+                        tools:listitem="@layout/item_faily"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

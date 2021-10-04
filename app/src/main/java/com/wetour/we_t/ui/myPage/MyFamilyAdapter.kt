@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -20,12 +22,14 @@ class MyFamilyAdapter(private val context: Context): RecyclerView.Adapter<MyFami
 
         val parentsImage = itemview.findViewById<ImageView>(R.id.item_family_image)
         val parentsName = itemview.findViewById<TextView>(R.id.item_family_name)
-        val parentsMode = itemview.findViewById<TextView>(R.id.item_family_mode)
+        val radioButton = itemview.findViewById<RadioButton>(R.id.item_family_btn_radio)
 
         fun bind(myFamilyData: MyFamilyData) {
             Glide.with(itemView).load(myFamilyData.image).transform(CircleCrop()).into(parentsImage)
             parentsName.text = myFamilyData.name
-            parentsMode.text = myFamilyData.mode
+            if (myFamilyData.isSelected) {
+                radioButton.isVisible = true
+            }
         }
     }
 
