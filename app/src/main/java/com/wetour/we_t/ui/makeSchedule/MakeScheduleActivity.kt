@@ -1,5 +1,6 @@
 package com.wetour.we_t.ui.makeSchedule
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
 import com.wetour.we_t.data.DayBtnData
 import com.wetour.we_t.data.ScheduleItemData
+import com.wetour.we_t.ui.addSchedule.AddScheduleActivity
 import kotlinx.android.synthetic.main.activity_make_schedule.*
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
@@ -55,6 +57,10 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.act_make_schedule_btn_back -> finish()
+            R.id.act_make_schedule_btn_addSchedule -> {
+                val intent = Intent(this, AddScheduleActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

@@ -25,6 +25,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="60dp"
                 android:src="@drawable/ic_back_black"
+                android:onClick="onClick"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
