@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp"
+    tools:context=".ui.myPage.InviteActivity">
+
+    <ImageView
+        android:id="@+id/act_invite_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_back_black"
+        android:onClick="onClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/act_invite_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:lineSpacingExtra="23sp"
+        android:text="우리가족"
+        android:textColor="@color/charcoal_grey"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/act_invite_btn_back" />
+
+    <TextView
+        android:id="@+id/act_invite_text_family_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:lineSpacingExtra="25sp"
+        android:text="0"
+        android:textColor="@color/warm_grey"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/act_invite_text1"
+        app:layout_constraintStart_toEndOf="@id/act_invite_text1"
+        app:layout_constraintTop_toTopOf="@id/act_invite_text1" />
+
+    <TextView
+        android:id="@+id/act_invite_btn_invite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/background_gradient_round_all_btn_20"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:gravity="center"
+        android:lineSpacingExtra="17sp"
+        android:onClick="onClick"
+        android:paddingVertical="12dp"
+        android:text="가족 추가"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/act_invite_text_emptyFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginVertical="50dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:lineSpacingExtra="25sp"
+        android:text="가족을 추가하고 여행을 개설해 보세요"
+        android:textColor="@color/warm_grey"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@id/act_invite_btn_invite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/act_invite_text1" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/act_invite_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/act_invite_btn_invite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/act_invite_text1"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
