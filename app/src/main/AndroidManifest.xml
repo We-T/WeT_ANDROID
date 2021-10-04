@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WE_T">
-        <activity android:name=".ui.myPage.InviteActivity"></activity>
+        <activity android:name=".ui.home.SearchActivity"></activity>
+        <activity android:name=".ui.myPage.InviteActivity" />
         <activity android:name=".ui.addSchedule.AddScheduleActivity" />
         <activity android:name=".ui.myPage.MyPageActivity" />
         <activity android:name=".TestActivity">

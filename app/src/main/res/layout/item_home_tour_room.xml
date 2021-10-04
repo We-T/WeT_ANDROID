@@ -4,7 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginVertical="20dp"
-    android:layout_marginHorizontal="10dp">
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginEnd="70dp">
 
     <FrameLayout
         android:id="@+id/item_home_tour_room_frame"

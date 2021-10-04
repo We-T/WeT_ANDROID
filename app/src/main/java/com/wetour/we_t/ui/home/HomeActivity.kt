@@ -146,6 +146,11 @@ class HomeActivity : AppCompatActivity() , View.OnClickListener{
                 val intent = Intent(this, MyPageActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.act_home_btn_search -> {
+                val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
