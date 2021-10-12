@@ -34,12 +34,23 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:fontFamily="@font/kopubworld_dotum_bold"
                         android:lineSpacingExtra="13sp"
-                        android:text="제주도 > "
+                        android:text="제주도"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_arrow_under_white"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"/>
 
                     <ImageView
                         android:id="@+id/act_place_home_btn_close"
@@ -57,6 +68,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/act_plage_home_text_title1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kopubworld_dotum_medium"
@@ -66,6 +78,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/act_plage_home_text_title2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -75,38 +88,77 @@
                         android:textColor="@color/white"
                         android:textSize="17sp" />
 
-                    <LinearLayout
-                        android:id="@+id/act_place_home_btn_makeTour"
+                    <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/round_box_stroke_white_radius_16"
-                        android:gravity="center"
-                        android:onClick="onClick"
-                        android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/act_home_text_user"
                         app:layout_constraintTop_toBottomOf="@+id/act_home_text_user">
 
-                        <TextView
+                        <LinearLayout
+                            android:visibility="visible"
+                            android:id="@+id/act_place_home_btn_makeTour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:fontFamily="@font/kopubworld_dotum_medium"
-                            android:lineSpacingExtra="17sp"
-                            android:paddingHorizontal="20dp"
-                            android:paddingVertical="5dp"
-                            android:text="여행 개설하기"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:background="@drawable/round_box_stroke_white_radius_16"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
 
-                        <ImageView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:fontFamily="@font/kopubworld_dotum_medium"
+                                android:lineSpacingExtra="17sp"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="5dp"
+                                android:text="여행 개설하기"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="20dp"
+                                android:src="@drawable/icon_arrow_right_white" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:visibility="invisible"
+                            android:id="@+id/act_place_home_btn_like_list"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingEnd="20dp"
-                            android:src="@drawable/icon_arrow_right_white" />
-                    </LinearLayout>
+                            android:background="@drawable/round_box_stroke_white_radius_16"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:fontFamily="@font/kopubworld_dotum_medium"
+                                android:lineSpacingExtra="17sp"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="5dp"
+                                android:text="좋아요 목록보기"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="20dp"
+                                android:src="@drawable/icon_arrow_right_white" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -434,6 +486,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/act_place_home_layout_like_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"

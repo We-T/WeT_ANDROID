@@ -36,13 +36,6 @@
         android:onClick="onClick"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPlaceHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="placeHome"
-        android:onClick="onClick"/>
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnPlaceInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,6 +61,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="myPage"
+        android:onClick="onClick"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPlaceHomeChild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnPlaceHomeChild"
+        android:onClick="onClick"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPlaceHomeParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnPlaceHomeParent"
         android:onClick="onClick"/>
 
 

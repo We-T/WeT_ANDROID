@@ -1,17 +1,21 @@
 package com.wetour.we_t.ui.placeHome
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
 import com.wetour.we_t.ui.home.tourContents.MultiRecyclerTitleAdapter
 import com.wetour.we_t.ui.home.tourContents.model.MultiRecyclerTitle
 import com.wetour.we_t.data.MultiRecyclerData
+import com.wetour.we_t.ui.myPage.MyPageActivity
 import kotlinx.android.synthetic.main.activity_place_home.*
 
 class PlaceHomeActivity : AppCompatActivity(), View.OnClickListener {
 
+    lateinit var mode: String
     lateinit var placeLikeAdpater: PlaceLikeAdpater
     lateinit var multiRecyclerTitleAdapter: MultiRecyclerTitleAdapter
     var titleData = mutableListOf<MultiRecyclerTitle>()
@@ -20,21 +24,49 @@ class PlaceHomeActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_home)
 
+        initUI()
         setRv()
+    }
+
+    private fun initUI() {
+        mode = intent.getStringExtra("mode").toString()
+
+        if (mode == "parent") {
+            // 부모 모드
+            act_plage_home_text_title1.text = "원하는 관광지에 좋아요를 눌러주세요!"
+            act_plage_home_text_title2.text = "자녀에게 전송되어 여행일정에 반영됩니다"
+            act_place_home_btn_like_list.isVisible = true
+            act_place_home_btn_makeTour.isVisible = false
+
+            // 부모 모드에서는 "좋아요 누른 게시물" 리스트 없다.
+            act_place_home_layout_like_list.visibility = View.GONE
+        } else {
+            // 자녀 모드
+            act_plage_home_text_title1.text = "아직 여행 계획이 없습니다"
+            act_plage_home_text_title2.text = "제주도 여행을 개설하시겠어요?"
+            act_place_home_btn_like_list.isVisible = false
+            act_place_home_btn_makeTour.isVisible = true
+        }
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.act_place_home_btn_close -> finish()
             R.id.act_place_home_btn_makeTour -> {}
+            R.id.act_place_home_btn_like_list -> {
+                val intent = Intent(this, MyPageActivity::class.java)
+                intent.putExtra("mode", "parent")
+                startActivity(intent)
+            }
         }
     }
 
     private fun setRv() {
         placeLikeAdpater = PlaceLikeAdpater(this)
-        multiRecyclerTitleAdapter = MultiRecyclerTitleAdapter(this)
         act_place_home_recyclerview_like.adapter = placeLikeAdpater
         act_place_home_recyclerview_like.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        multiRecyclerTitleAdapter = MultiRecyclerTitleAdapter(this)
         act_place_home_recyclerview_multi.adapter = multiRecyclerTitleAdapter
         act_place_home_recyclerview_multi.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
@@ -42,29 +74,68 @@ class PlaceHomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loadData() {
-        titleData.apply {
-            add(
-                MultiRecyclerTitle(
-                    "부모님이 좋아요한 제주도 여행지",
-                    arrayListOf(
-                        MultiRecyclerData(1, "제주", R.drawable.img_jeju_exam, arrayListOf("#밭", "#자연")),
-                        MultiRecyclerData(1, "여수", R.drawable.img_yeosu_exam, arrayListOf("#밭", "#자연")),
-                        MultiRecyclerData(1, "부산 광안리", R.drawable.img_busan_exam, arrayListOf("#밭", "#자연"))
-                    )
-                )
-            )
 
-            add(
-                MultiRecyclerTitle(
-                    "제주도 핫플레이스",
-                    arrayListOf(
-                        MultiRecyclerData(1, "제주", R.drawable.img_jeju_exam, arrayListOf("#밭", "#자연")),
-                        MultiRecyclerData(1, "여수", R.drawable.img_yeosu_exam, arrayListOf("#밭", "#자연")),
-                        MultiRecyclerData(1, "부산 광안리", R.drawable.img_busan_exam, arrayListOf("#밭", "#자연"))
+        if (mode == "parent") {
+            titleData.apply {
+                add(
+                    MultiRecyclerTitle(
+                        "제주도 핫플레이스",
+                        arrayListOf(
+                            MultiRecyclerData(1, "제주", R.drawable.img_jeju_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "여수", R.drawable.img_yeosu_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "부산 광안리", R.drawable.img_busan_exam, arrayListOf("#밭", "#자연"))
+                        )
                     )
                 )
-            )
+
+                add(
+                    MultiRecyclerTitle(
+                        "TV 속 제주도 여행지",
+                        arrayListOf(
+                            MultiRecyclerData(1, "제주", R.drawable.img_jeju_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "여수", R.drawable.img_yeosu_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "부산 광안리", R.drawable.img_busan_exam, arrayListOf("#밭", "#자연"))
+                        )
+                    )
+                )
+
+                add(
+                    MultiRecyclerTitle(
+                        "축제중인 제주도 여행지",
+                        arrayListOf(
+                            MultiRecyclerData(1, "제주", R.drawable.img_jeju_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "여수", R.drawable.img_yeosu_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "부산 광안리", R.drawable.img_busan_exam, arrayListOf("#밭", "#자연"))
+                        )
+                    )
+                )
+            }
+        } else {
+            titleData.apply {
+                add(
+                    MultiRecyclerTitle(
+                        "부모님이 좋아요한 제주도 여행지",
+                        arrayListOf(
+                            MultiRecyclerData(1, "제주", R.drawable.img_jeju_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "여수", R.drawable.img_yeosu_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "부산 광안리", R.drawable.img_busan_exam, arrayListOf("#밭", "#자연"))
+                        )
+                    )
+                )
+
+                add(
+                    MultiRecyclerTitle(
+                        "제주도 핫플레이스",
+                        arrayListOf(
+                            MultiRecyclerData(1, "제주", R.drawable.img_jeju_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "여수", R.drawable.img_yeosu_exam, arrayListOf("#밭", "#자연")),
+                            MultiRecyclerData(1, "부산 광안리", R.drawable.img_busan_exam, arrayListOf("#밭", "#자연"))
+                        )
+                    )
+                )
+            }
         }
+
         multiRecyclerTitleAdapter.datas = titleData
         multiRecyclerTitleAdapter.notifyDataSetChanged()
 

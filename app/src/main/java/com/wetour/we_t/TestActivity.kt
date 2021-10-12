@@ -42,10 +42,6 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
 
-            R.id.btnPlaceHome -> {
-                val intent = Intent(this, PlaceHomeActivity::class.java)
-                startActivity(intent)
-            }
 
             R.id.btnPlaceInfo -> {
                 val intent = Intent(this, PlaceInfoActivity::class.java)
@@ -64,6 +60,18 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.btnMypage -> {
                 val intent = Intent(this, MyPageActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.btnPlaceHomeChild -> {
+                val intent = Intent(this, PlaceHomeActivity::class.java)
+                intent.putExtra("mode", "child")
+                startActivity(intent)
+            }
+
+            R.id.btnPlaceHomeParent -> {
+                val intent = Intent(this, PlaceHomeActivity::class.java)
+                intent.putExtra("mode", "parent")
                 startActivity(intent)
             }
         }
