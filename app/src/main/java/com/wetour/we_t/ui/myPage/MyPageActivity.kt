@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.wetour.we_t.R
+import com.wetour.we_t.data.CommentData
 import com.wetour.we_t.data.PlaceInfoData
 import com.wetour.we_t.data.TravelLogData
 import com.wetour.we_t.databinding.ActivityMyPageBinding
@@ -26,12 +27,14 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var placeInfoAdapter: PlaceInfoAdapter
     private lateinit var travelLogAdapter: TravelLogAdapter
+    private lateinit var reviewAdapter: ReviewAdapter
 
     private lateinit var binding: ActivityMyPageBinding
     private lateinit var placeInfoViewModel: PlaceInfoViewModel
 
     var datas = mutableListOf<PlaceInfoData>()
     var logDatas = mutableListOf<MultiTravleLog>()
+    var reviewDatas = mutableListOf<CommentData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,7 +100,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                         if (mode == "parent") {
                             // 부모 모드
                             // "리뷰"
-                            binding.actMypageRecyclerview.adapter = travelLogAdapter
+                            binding.actMypageRecyclerview.adapter = reviewAdapter
                         } else {
                             // 자녀 모드
                             // "여행 기록 "
@@ -121,6 +124,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         binding.actMypageRecyclerview.adapter = placeInfoAdapter
 
         travelLogAdapter = TravelLogAdapter(this)
+        reviewAdapter = ReviewAdapter(this)
     }
 
     private fun getData() {
@@ -186,6 +190,40 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         travelLogAdapter.notifyDataSetChanged()
 
 
+        reviewDatas.apply {
+            add(
+                CommentData(
+                    "",
+                    "휴애리자연생활공원",
+                    "2021.07.29",
+                    5,
+                    "한적하고 가족들이랑 다녀오기 너무 좋았습니다 다음에 또 가고싶네요"
+                )
+            )
+
+            add(
+                CommentData(
+                    "",
+                    "휴애리자연생활공원",
+                    "2021.06.21",
+                    4,
+                    "한적하고 가족들이랑 다녀오기 너무 좋았습니다 다음에 또 가고싶네요"
+                )
+            )
+
+            add(
+                CommentData(
+                    "",
+                    "휴애리자연생활공원",
+                    "2021.02.04",
+                    3,
+                    "한적하고 가족들이랑 다녀오기 너무 좋았습니다 다음에 또 가고싶네요"
+                )
+            )
+        }
+
+        reviewAdapter.datas = reviewDatas
+        reviewAdapter.notifyDataSetChanged()
     }
 
     override fun onClick(v: View?) {

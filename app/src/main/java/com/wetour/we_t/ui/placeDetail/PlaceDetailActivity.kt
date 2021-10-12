@@ -38,7 +38,7 @@ class PlaceDetailActivity : AppCompatActivity(), View.OnClickListener {
         act_place_detail_layout_commentUser.bringToFront()
 
         initial()
-        setMap()
+//        setMap()
         setScroll()
         setRv()
     }
