@@ -58,8 +58,15 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
 
-            R.id.btnMypage -> {
+            R.id.btnMypageChild -> {
                 val intent = Intent(this, MyPageActivity::class.java)
+                intent.putExtra("mode", "child")
+                startActivity(intent)
+            }
+
+            R.id.btnMypageParent -> {
+                val intent = Intent(this, MyPageActivity::class.java)
+                intent.putExtra("mode", "parent")
                 startActivity(intent)
             }
 

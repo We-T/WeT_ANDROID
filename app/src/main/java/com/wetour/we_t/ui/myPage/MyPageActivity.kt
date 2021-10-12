@@ -3,24 +3,35 @@ package com.wetour.we_t.ui.myPage
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
 import com.wetour.we_t.R
 import com.wetour.we_t.data.PlaceInfoData
+import com.wetour.we_t.data.TravelLogData
 import com.wetour.we_t.databinding.ActivityMyPageBinding
+import com.wetour.we_t.ui.myPage.TravelLog.MultiTravleLog
+import com.wetour.we_t.ui.myPage.TravelLog.TravelLogAdapter
 import com.wetour.we_t.ui.placeInfo.PlaceInfoAdapter
 import com.wetour.we_t.ui.placeInfo.PlaceInfoViewModel
+import kotlinx.android.synthetic.main.activity_my_page.*
 
 class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
+    lateinit var mode: String
+
     private lateinit var placeInfoAdapter: PlaceInfoAdapter
+    private lateinit var travelLogAdapter: TravelLogAdapter
+
     private lateinit var binding: ActivityMyPageBinding
     private lateinit var placeInfoViewModel: PlaceInfoViewModel
 
     var datas = mutableListOf<PlaceInfoData>()
+    var logDatas = mutableListOf<MultiTravleLog>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,20 +40,91 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
         placeInfoViewModel = ViewModelProviders.of(this).get(PlaceInfoViewModel::class.java)
 
+        initUI()
         setRv()
+        addTabListener()
+
         placeInfoViewModel.getPlaceData().observe(this, Observer<List<PlaceInfoData>> { item ->
             // update UI
             placeInfoAdapter.datas = datas
             placeInfoAdapter.notifyDataSetChanged()
         })
 
+        getData()
+
+    }
+
+    private fun initUI() {
+        mode = intent.getStringExtra("mode").toString()
+
+        if (mode == "parent") {
+            act_mypage_text_mode.text = "부모모드"
+            act_mypage_btn_invite.visibility = View.INVISIBLE
+
+            act_mypage_tab_layout.getTabAt(0)!!.text = "좋아요 여행지"
+            act_mypage_tab_layout.getTabAt(1)!!.text = "여행 기록"
+            act_mypage_tab_layout.getTabAt(2)!!.text = "리뷰"
+        } else {
+            act_mypage_text_mode.text = "자녀모드"
+            act_mypage_btn_invite.visibility = View.VISIBLE
+
+            act_mypage_tab_layout.getTabAt(0)!!.text = "나의 좋아요"
+            act_mypage_tab_layout.getTabAt(1)!!.text = "부모님 좋아요"
+            act_mypage_tab_layout.getTabAt(2)!!.text = "여행 기록"
+        }
+    }
+
+    private fun addTabListener() {
+        act_mypage_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab!!.position) {
+                    0 -> {
+                        // 부모, 자녀 동일하게 "나의 좋아요"
+                        binding.actMypageRecyclerview.adapter = placeInfoAdapter
+                    }
+                    1 -> {
+                        if (mode == "parent") {
+                            // 부모 모드
+                            // "여행 기록"
+                            binding.actMypageRecyclerview.adapter = travelLogAdapter
+                        } else {
+                            // 자녀 모드
+                            // "부모님 좋아요 "
+                            binding.actMypageRecyclerview.adapter = placeInfoAdapter
+                        }
+                    }
+                    2 -> {
+                        if (mode == "parent") {
+                            // 부모 모드
+                            // "리뷰"
+                            binding.actMypageRecyclerview.adapter = travelLogAdapter
+                        } else {
+                            // 자녀 모드
+                            // "여행 기록 "
+                            binding.actMypageRecyclerview.adapter = travelLogAdapter
+                        }
+                    }
+                    else -> Toast.makeText(this@MyPageActivity, "올바르지 않은 탭 선택", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
     }
 
     private fun setRv() {
         placeInfoAdapter = PlaceInfoAdapter(this)
-        binding.actMypageRecyclerview.adapter = placeInfoAdapter
         binding.actMypageRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.actMypageRecyclerview.adapter = placeInfoAdapter
+
+        travelLogAdapter = TravelLogAdapter(this)
+    }
+
+    private fun getData() {
+
 
         datas.apply {
             add(
@@ -79,6 +161,31 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         }
         placeInfoAdapter.datas = datas
         placeInfoAdapter.notifyDataSetChanged()
+
+        logDatas.apply {
+            add(
+                MultiTravleLog(
+                    "다가오는 여행",
+                    arrayListOf(
+                        TravelLogData("", "", "사랑하는 엄빠의 제주여행", "제주도", "08.02", "08.05")
+                    )
+                )
+            )
+            add(
+                MultiTravleLog(
+                    "지난 여행",
+                    arrayListOf(
+                        TravelLogData("", "", "사랑하는 엄빠의 제주여행", "제주도", "08.02", "08.05"),
+                        TravelLogData("", "", "결혼기념 청주", "충정북도", "08.02", "08.05"),
+                        TravelLogData("", "", "여수가족여행", "전라남도", "08.02", "08.05")
+                    )
+                )
+            )
+        }
+        travelLogAdapter.datas = logDatas
+        travelLogAdapter.notifyDataSetChanged()
+
+
     }
 
     override fun onClick(v: View?) {

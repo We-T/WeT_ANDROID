@@ -57,10 +57,17 @@
         android:onClick="onClick"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnMypage"
+        android:id="@+id/btnMypageChild"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="myPage"
+        android:text="btnMypageChild"
+        android:onClick="onClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMypageParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnMypageParent"
         android:onClick="onClick"/>
 
 
