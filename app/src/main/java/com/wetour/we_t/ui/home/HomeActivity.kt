@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
 import com.wetour.we_t.data.TourRoomData
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity() , View.OnClickListener{
 
     lateinit var tourRoomAdapter: TourRoomAdapter
+    lateinit var mode: String
     var tourRoomDatas = mutableListOf<TourRoomData>()
 
     var titleData = mutableListOf<MultiRecyclerTitle>()
@@ -27,7 +30,21 @@ class HomeActivity : AppCompatActivity() , View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        initUI()
         setRv()
+        getDummyData()
+
+    }
+
+    private fun initUI() {
+        mode = intent.getStringExtra("mode").toString()
+        if (mode == "parent") {
+            act_home_text_user.text =  "홍길동님,\n행복한 여행을 도와드리겠습니다!"
+            act_home_btn_make_tour.visibility = View.GONE
+            act_homt_text_open_tour.text = "자녀가 개설한 여행방"
+        } else {
+            act_home_text_user.text = "변다솔님,\n행복한 여행을 준비해주세요!"
+        }
     }
 
     private fun setRv() {
@@ -35,7 +52,6 @@ class HomeActivity : AppCompatActivity() , View.OnClickListener{
         act_home_tour_room_recyclerview.adapter = tourRoomAdapter
         act_home_tour_room_recyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        getDummyData()
 
 
         val multiRecyclerTitleAdapter = MultiRecyclerTitleAdapter(this)
@@ -69,37 +85,62 @@ class HomeActivity : AppCompatActivity() , View.OnClickListener{
         val list3 = arrayListOf(
             MultiRecyclerData(3, "태백 해바라기 축제", R.drawable.img_fes1, null)
         )
-        titleData.apply {
-            add(
-                MultiRecyclerTitle(
-                    "부모님이 이 여행지를 좋아해요!",
-                    arrayListOf(
-                        MultiRecyclerData(0, "제주", R.drawable.img_jeju_exam, null),
-                        MultiRecyclerData(0, "여수", R.drawable.img_yeosu_exam, null),
-                        MultiRecyclerData(0, "부산 광안리", R.drawable.img_busan_exam, null)
-                    )
 
+        if (mode == "parent") {
+            titleData.apply {
+                add(
+                    MultiRecyclerTitle(
+                        "위트가 추천하는 관광지",
+                        list1
+                    )
                 )
-            )
-            add(
-                MultiRecyclerTitle(
-                    "위트가 추천하는 관광지",
-                    list1
+                add(
+                    MultiRecyclerTitle(
+                        "TV 속 그 여행지",
+                        list2
+                    )
                 )
-            )
-            add(
-                MultiRecyclerTitle(
-                    "TV 속 그 여행지",
-                    list2
+                add(
+                    MultiRecyclerTitle(
+                        "축제중인 여행지",
+                        list3
+                    )
                 )
-            )
-            add(
-                MultiRecyclerTitle(
-                    "축제중인 여행지",
-                    list3
+            }
+        } else {
+            titleData.apply {
+                add(
+                    MultiRecyclerTitle(
+                        "부모님이 이 여행지를 좋아해요!",
+                        arrayListOf(
+                            MultiRecyclerData(0, "제주", R.drawable.img_jeju_exam, null),
+                            MultiRecyclerData(0, "여수", R.drawable.img_yeosu_exam, null),
+                            MultiRecyclerData(0, "부산 광안리", R.drawable.img_busan_exam, null)
+                        )
+
+                    )
                 )
-            )
+                add(
+                    MultiRecyclerTitle(
+                        "위트가 추천하는 관광지",
+                        list1
+                    )
+                )
+                add(
+                    MultiRecyclerTitle(
+                        "TV 속 그 여행지",
+                        list2
+                    )
+                )
+                add(
+                    MultiRecyclerTitle(
+                        "축제중인 여행지",
+                        list3
+                    )
+                )
+            }
         }
+
 
         tourRoomDatas.apply {
             add(

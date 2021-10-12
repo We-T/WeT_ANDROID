@@ -231,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="60dp"
-                android:background="@drawable/background_gradient_round_all_btn"
+                android:background="@drawable/background_gradient_round_all_btn_60"
                 android:fontFamily="@font/kopubworld_dotum_medium"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="8sp"

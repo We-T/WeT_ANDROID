@@ -63,12 +63,12 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.act_signin_btn_naver -> {
-                val intent = Intent(this, AddScheduleActivity::class.java)
+                val intent = Intent(this, SelectSignInMode::class.java)
                 startActivity(intent)
             }
 
             R.id.act_signin_btn_google -> {
-                val intent = Intent(this, MakeScheduleActivity::class.java)
+                val intent = Intent(this, SelectSignInMode::class.java)
                 startActivity(intent)
             }
         }
