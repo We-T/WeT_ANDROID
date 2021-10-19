@@ -274,42 +274,16 @@
 
             <TextView
                 android:id="@+id/act_place_detail_text_basicinfo1"
-                android:layout_width="65dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/kopubworld_dotum_bold"
-                android:lineSpacingExtra="7sp"
-                android:text="우편번호"
-                android:textColor="@color/greyish_brown"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@+id/act_place_detail_pin_basicInfo"
-                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_pin_basicInfo" />
-
-            <TextView
-                android:id="@+id/act_place_detail_text_postNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kopubworld_dotum_medium"
-                android:lineSpacingExtra="7sp"
-                android:text="63608"
-                android:textColor="@color/greyish_brown"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_text_basicinfo1"
-                app:layout_constraintStart_toEndOf="@+id/act_place_detail_text_basicinfo1"
-                app:layout_constraintTop_toTopOf="@+id/act_place_detail_text_basicinfo1" />
-
-
-            <TextView
-                android:id="@+id/act_place_detail_text_basicinfo2"
-                android:layout_width="65dp"
-                android:layout_height="wrap_content"
                 android:fontFamily="@font/kopubworld_dotum_bold"
                 android:lineSpacingExtra="7sp"
                 android:text="홈페이지"
                 android:textColor="@color/greyish_brown"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/act_place_detail_pin_basicInfo"
-                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_basicinfo1" />
+                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_pin_basicInfo" />
 
             <TextView
                 android:id="@+id/act_place_detail_text_homePage"
@@ -320,21 +294,23 @@
                 android:text="http://www.hueree.com"
                 android:textColor="@color/greyish_brown"
                 android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_text_basicinfo2"
-                app:layout_constraintStart_toEndOf="@+id/act_place_detail_text_basicinfo2"
-                app:layout_constraintTop_toTopOf="@+id/act_place_detail_text_basicinfo2" />
+                app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_text_basicinfo1"
+                app:layout_constraintStart_toEndOf="@+id/act_place_detail_text_basicinfo1"
+                app:layout_constraintTop_toTopOf="@+id/act_place_detail_text_basicinfo1" />
+
 
             <TextView
-                android:id="@+id/act_place_detail_text_basicinfo3"
-                android:layout_width="65dp"
+                android:id="@+id/act_place_detail_text_basicinfo2"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/kopubworld_dotum_bold"
                 android:lineSpacingExtra="7sp"
                 android:text="주소"
                 android:textColor="@color/greyish_brown"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/act_place_detail_pin_basicInfo"
-                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_basicinfo2" />
+                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_basicinfo1" />
 
             <TextView
                 android:id="@+id/act_place_detail_text_address"
@@ -345,9 +321,61 @@
                 android:text="제주특별자치도 서귀포시 남원읍 신례동로 256 "
                 android:textColor="@color/greyish_brown"
                 android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_text_basicinfo2"
+                app:layout_constraintStart_toEndOf="@+id/act_place_detail_text_basicinfo2"
+                app:layout_constraintTop_toTopOf="@+id/act_place_detail_text_basicinfo2" />
+
+            <TextView
+                android:id="@+id/act_place_detail_text_basicinfo3"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:lineSpacingExtra="7sp"
+                android:text="문의 및 안내"
+                android:textColor="@color/greyish_brown"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/act_place_detail_pin_basicInfo"
+                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_basicinfo2" />
+
+            <TextView
+                android:id="@+id/act_place_detail_text_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopubworld_dotum_medium"
+                android:lineSpacingExtra="7sp"
+                android:text="064-732-2114"
+                android:textColor="@color/greyish_brown"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_text_basicinfo3"
                 app:layout_constraintStart_toEndOf="@+id/act_place_detail_text_basicinfo3"
                 app:layout_constraintTop_toTopOf="@+id/act_place_detail_text_basicinfo3" />
+
+            <TextView
+                android:id="@+id/act_place_detail_text_basicinfo4"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:lineSpacingExtra="7sp"
+                android:text="쉬는날"
+                android:textColor="@color/greyish_brown"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/act_place_detail_pin_basicInfo"
+                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_basicinfo3" />
+
+            <TextView
+                android:id="@+id/act_place_detail_text_holiday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopubworld_dotum_medium"
+                android:lineSpacingExtra="7sp"
+                android:text="연중무휴"
+                android:textColor="@color/greyish_brown"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/act_place_detail_text_basicinfo4"
+                app:layout_constraintStart_toEndOf="@+id/act_place_detail_text_basicinfo4"
+                app:layout_constraintTop_toTopOf="@+id/act_place_detail_text_basicinfo4" />
 
             <View
                 android:id="@+id/act_place_detail_guidline1"
@@ -359,7 +387,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/act_place_detail_pin_detailInfo"
-                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_address" />
+                app:layout_constraintTop_toBottomOf="@+id/act_place_detail_text_holiday" />
 
             <TextView
                 android:id="@+id/act_place_detail_pin_detailInfo"
