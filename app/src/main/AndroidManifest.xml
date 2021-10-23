@@ -14,9 +14,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.WE_T"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.user.SignUpActivity"></activity>
+        <activity android:name=".ui.user.SignUpActivity"/>
         <activity android:name=".ui.user.SignInActivity" />
         <activity android:name=".ui.user.AuthActivity" />
         <activity android:name=".ui.home.SearchActivity" />

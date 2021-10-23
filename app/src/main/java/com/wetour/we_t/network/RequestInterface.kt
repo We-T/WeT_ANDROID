@@ -35,4 +35,8 @@ interface RequestInterface {
 
 //    @POST("/mypage/trip_record")
 //    fun reqeustMypageTripRecord(@Body body: JsonObject): Call<>
+
+
+    @POST("/main")
+    fun requestMain(@Body body: JsonObject): Call<MainResponse>
 }

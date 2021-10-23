@@ -3,7 +3,7 @@ package com.wetour.we_t.data
 data class MultiRecyclerData(
     val type: Int,
     val place: String,
-    val image: Int,
+    val image: String,
     val hashTag: ArrayList<String>?
 ) {
     companion object {

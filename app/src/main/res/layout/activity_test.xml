@@ -93,5 +93,10 @@
         android:text="Login"
         android:onClick="onClick"/>
 
+    <ImageView
+        android:id="@+id/testimg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/black"/>
 
 </LinearLayout>

@@ -55,47 +55,96 @@
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/kopubworld_dotum_medium"
                         android:lineSpacingExtra="5sp"
-                        android:text="변다솔님,\n행복한 여행을 준비해주세요!"
+                        android:text="변다솔님,"
                         android:textColor="@color/white"
                         android:textSize="23sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/act_home_btn_mypage" />
 
-                    <LinearLayout
-                        android:id="@+id/act_home_btn_make_tour"
+                    <TextView
+                        android:id="@+id/act_home_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="150dp"
-                        android:background="@drawable/round_box_stroke_white_radius_16"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:onClick="onClick"
+                        android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/kopubworld_dotum_medium"
+                        android:lineSpacingExtra="5sp"
+                        android:text="행복한 여행을 준비해주세요!"
+                        android:textColor="@color/white"
+                        android:textSize="23sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/act_home_text_user" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/act_home_text_user"
-                        app:layout_constraintTop_toBottomOf="@+id/act_home_text_user">
+                        app:layout_constraintTop_toBottomOf="@+id/act_home_text">
 
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/act_home_btn_invite_family"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
-                            android:fontFamily="@font/kopubworld_dotum_medium"
-                            android:lineSpacingExtra="17sp"
-                            android:paddingHorizontal="20dp"
-                            android:paddingVertical="5dp"
-                            android:text="여행 개설하기"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="150dp"
+                            android:background="@drawable/round_box_stroke_white_radius_16"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
 
-                        <ImageView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:fontFamily="@font/kopubworld_dotum_medium"
+                                android:lineSpacingExtra="17sp"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="5dp"
+                                android:text="가족 초대하기"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="20dp"
+                                android:src="@drawable/icon_arrow_right_white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/act_home_btn_make_tour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingEnd="20dp"
-                            android:src="@drawable/icon_arrow_right_white" />
-                    </LinearLayout>
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="150dp"
+                            android:background="@drawable/round_box_stroke_white_radius_16"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:orientation="horizontal"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:fontFamily="@font/kopubworld_dotum_medium"
+                                android:lineSpacingExtra="17sp"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="5dp"
+                                android:text="여행 개설하기"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="20dp"
+                                android:src="@drawable/icon_arrow_right_white" />
+                        </LinearLayout>
 
 
+                    </FrameLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

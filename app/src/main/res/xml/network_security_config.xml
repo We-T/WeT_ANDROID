@@ -4,4 +4,8 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">maps.daum-img.net</domain>
     </domain-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">example.com</domain>
+    </domain-config>
 </network-security-config>
+

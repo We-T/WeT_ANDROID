@@ -1,6 +1,7 @@
 package com.wetour.we_t.ui.home.tourContents
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.wetour.we_t.R
 import com.wetour.we_t.data.MultiRecyclerData
 
@@ -48,13 +51,13 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
         val obj = datas[position]
         when (obj.type) {
             MultiRecyclerData.BASIC_TYPE -> {
-                (holder as BasicViewHolder).place.text = obj.place
-                holder.image.setImageResource(obj.image)
+                (holder as BasicViewHolder).bind(obj)
             }
 
             MultiRecyclerData.HASHTAG_TYPE -> {
-                (holder as HashTagViewHolder).place.text = obj.place
-                holder.image.setImageResource(obj.image)
+                (holder as HashTagViewHolder).bind(obj)
+//                holder.image.setImageResource(obj.image)
+//                Glide.with(itemView).load(obj.image).transform(CircleCrop()).into(holder.image)
 
                 val hashTagAdpater = HashTagAdpater(context)
                 holder.hashTagRecyclerView.adapter = hashTagAdpater
@@ -63,14 +66,11 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
             }
 
             MultiRecyclerData.HASHTAG_WIDE_TYPE -> {
-                (holder as HashTagWideViewHolder).place.text = obj.place
-                holder.image.setImageResource(obj.image)
-                holder.hashTagData = obj.hashTag!!
+                (holder as HashTagWideViewHolder).bind(obj)
             }
 
             MultiRecyclerData.FESTIVAL_TYPE -> {
-                (holder as FestivalHolder).place.text = obj.place
-                holder.image.setImageResource(obj.image)
+                (holder as FestivalHolder).bind(obj)
             }
         }
     }
@@ -83,22 +83,46 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
     inner class BasicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.item_place_img)
         val place: TextView = itemView.findViewById(R.id.item_place_text)
+
+        fun bind(obj: MultiRecyclerData) {
+            place.text = obj.place
+            Glide.with(itemView).load("http://tong.visitkorea.or.kr/cms/resource/23/2755623_image2_1.jpg").transform(CircleCrop()).into(image)
+            Log.e("in BasicViewHoolder", "${obj.image}")
+        }
     }
 
     inner class HashTagViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.item_place_img)
         val place: TextView = itemView.findViewById(R.id.item_place_text)
         val hashTagRecyclerView = itemView.findViewById<RecyclerView>(R.id.item_place_recyclerveiw)
+
+        fun bind(obj: MultiRecyclerData) {
+            place.text = obj.place
+            Glide.with(itemView).load(Uri.parse(obj.image)).transform(CircleCrop()).into(image)
+        }
     }
 
     inner class HashTagWideViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.item_place_img)
         val place: TextView = itemView.findViewById(R.id.item_place_text)
         var hashTagData = ArrayList<String>()
+
+        fun bind(obj: MultiRecyclerData) {
+            place.text = obj.place
+            Log.e("in HashTagWideViewHolder", "${obj.image}")
+            Glide.with(itemView).load(obj.image).transform(CircleCrop()).into(image)
+        }
     }
 
     inner class FestivalHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.item_place_img)
         val place: TextView = itemView.findViewById(R.id.item_place_text)
+
+        fun bind(obj: MultiRecyclerData) {
+            place.text = obj.place
+            Log.e("in FestivalHolder", "${obj.image}")
+//            Glide.with(itemView).load(obj.image).transform(CircleCrop()).into(image)
+            image.setImageResource(R.drawable.img_fes1)
+        }
     }
 }

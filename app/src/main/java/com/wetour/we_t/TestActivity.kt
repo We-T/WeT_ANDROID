@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.wetour.we_t.network.RequestToServer
@@ -18,6 +19,7 @@ import com.wetour.we_t.ui.placeInfo.PlaceInfoActivity
 import com.wetour.we_t.ui.user.SelectSignInMode
 import com.wetour.we_t.ui.user.SignInActivity
 import com.wetour.we_t.ui.user.SocialSignInActivity
+import kotlinx.android.synthetic.main.activity_test.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +29,8 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
+
+        Glide.with(this).load("http://tong.visitkorea.or.kr/cms/resource/70/2031770_image2_1.jpg").into(testimg)
     }
 
     override fun onClick(v: View?) {
