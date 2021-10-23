@@ -1,6 +1,8 @@
 package com.wetour.we_t.ui.user
 
+import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +10,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.wetour.we_t.PreferenceUtil
 import com.wetour.we_t.R
 import com.wetour.we_t.network.RequestToServer
 import com.wetour.we_t.ui.home.HomeActivity
@@ -18,9 +21,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SignInActivity : AppCompatActivity(), View.OnClickListener {
+
+    lateinit var preferenceUtil: PreferenceUtil
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
+
+        preferenceUtil = PreferenceUtil(this)
     }
 
     override fun onClick(v: View?) {
@@ -41,14 +49,19 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                         if (response.isSuccessful) {
                             Log.e("SignInActivity", "onResponse ${response.body().toString()}")
                             val res = response.body()
-                            if (res!!.get("code").asString == "200") {
-                                val intent = Intent(this@SignInActivity, HomeActivity::class.java)
-                                startActivity(intent)
-                            } else if (res!!.get("code").asString == "204") {
-                                // 비밀번호 틀림 || 아이디 존재하지 않음
-                                Toast.makeText(this@SignInActivity, "아이디와 비밀번호를 확인해주세요!", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(this@SignInActivity, "서버에서 알 수 없는 코드 수신", Toast.LENGTH_SHORT).show()
+                            when(res!!.get("code").asString) {
+                                "200" -> {
+
+                                    preferenceUtil.setString("email", act_signin_edit_id.text.toString())
+
+                                    val intent = Intent(this@SignInActivity, HomeActivity::class.java)
+                                    startActivity(intent)
+                                }
+                                "204" -> {
+                                    // 비밀번호 틀림 || 아이디 존재하지 않음
+                                    Toast.makeText(this@SignInActivity, "아이디와 비밀번호를 확인해주세요!", Toast.LENGTH_SHORT).show()
+                                }
+                                else -> Toast.makeText(this@SignInActivity, "서버에서 알 수 없는 코드 수신", Toast.LENGTH_SHORT).show()
                             }
                         } else {
                             Log.e("SignInActivity", "onResponse-fail ${response.message()}")
@@ -63,7 +76,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                 })
             }
             R.id.act_singin_btn_signup -> {
-                val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
+                val intent = Intent(this@SignInActivity, SelectSignInMode::class.java)
                 startActivity(intent)
             }
         }

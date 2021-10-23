@@ -3,10 +3,12 @@ package com.wetour.we_t.ui.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wetour.we_t.PreferenceUtil
 import com.wetour.we_t.R
 import com.wetour.we_t.data.TourRoomData
 import com.wetour.we_t.ui.home.tourContents.MultiRecyclerTitleAdapter
@@ -19,6 +21,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() , View.OnClickListener{
 
+    lateinit var preferenceUtil: PreferenceUtil
+
     lateinit var tourRoomAdapter: TourRoomAdapter
     lateinit var mode: String
     var tourRoomDatas = mutableListOf<TourRoomData>()
@@ -30,6 +34,8 @@ class HomeActivity : AppCompatActivity() , View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        preferenceUtil = PreferenceUtil(this)
+        Log.e("pref",preferenceUtil.getString("email", "no") )
         initUI()
         setRv()
         getDummyData()
