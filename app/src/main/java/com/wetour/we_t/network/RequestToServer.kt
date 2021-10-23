@@ -46,7 +46,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RequestToServer {
 
     var BASE_URL = "http://39.117.207.206:8081"
-//    var test = "http://10.0.2.2:9872/"
+    var test = "http://172.20.10.2:3000"
 
 //    val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 //    val clientBuilder = OkHttpClient.Builder().addInterceptor(loggingInterceptor)
@@ -55,7 +55,7 @@ object RequestToServer {
 
     var retrofit: Retrofit =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(test)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
 //            .client(clientBuilder.build())

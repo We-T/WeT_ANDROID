@@ -99,16 +99,37 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
                 val body = JsonParser.parseString(jsonData.toString()) as JsonObject
                 Log.e("body", "$body")
 
-                RequestToServer.service.requestLogin(body).enqueue(object : Callback<JsonObject> {
+//                RequestToServer.service.requestLogin(body).enqueue(object : Callback<JsonObject> {
+//                    override fun onResponse(
+//                        call: Call<JsonObject>,
+//                        response: Response<JsonObject>
+//                    ) {
+//                        Log.e("success", "${response.body()}")
+//                    }
+//
+//                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+//                        Log.e("fail", "${t.message}")
+//                    }
+//
+//                })
+//
+                val test = JSONObject()
+                test.put("hi", "hello")
+                RequestToServer.service.test(JsonParser.parseString(test.toString()) as JsonObject).enqueue(object :Callback<JsonObject> {
                     override fun onResponse(
                         call: Call<JsonObject>,
                         response: Response<JsonObject>
                     ) {
-                        Log.e("success", "${response.body()}")
+                        if (response.isSuccessful){
+                            Log.e("success", response.body().toString())
+
+                        }else {
+                            Log.e("success", response.message().toString())
+                        }
                     }
 
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                        Log.e("fail", "${t.message}")
+                        Log.e("fail", t.message.toString())
                     }
 
                 })
