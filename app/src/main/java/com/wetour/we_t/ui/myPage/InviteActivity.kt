@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
 import com.wetour.we_t.data.MyFamilyData
-import com.wetour.we_t.ui.makeTour.InviteFamilyActivity
 import kotlinx.android.synthetic.main.activity_invite.*
 
 class InviteActivity : AppCompatActivity(), View.OnClickListener {

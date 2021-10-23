@@ -12,18 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.wetour.we_t.R
-import com.wetour.we_t.ui.addSchedule.AddScheduleActivity
-import com.wetour.we_t.ui.makeSchedule.MakeScheduleActivity
-import com.wetour.we_t.ui.placeDetail.PlaceDetailActivity
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
-class SignInActivity : AppCompatActivity(), View.OnClickListener {
+class SocialSignInActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        setContentView(R.layout.activity_social_sign_in)
 
         getHashKey()
 
@@ -53,10 +50,10 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             R.id.act_signin_btn_kakao -> {
                 // 로그인 공통 callback 구성
                 LoginClient.instance.run {
-                    if (isKakaoTalkLoginAvailable(this@SignInActivity)) {
-                        loginWithKakaoTalk(this@SignInActivity, callback = kakaoCallback())
+                    if (isKakaoTalkLoginAvailable(this@SocialSignInActivity)) {
+                        loginWithKakaoTalk(this@SocialSignInActivity, callback = kakaoCallback())
                     } else {
-                        loginWithKakaoAccount(this@SignInActivity, callback = kakaoCallback())
+                        loginWithKakaoAccount(this@SocialSignInActivity, callback = kakaoCallback())
                     }
                 }
 
