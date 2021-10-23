@@ -50,11 +50,30 @@
             android:paddingHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:hint="비밀번호 입력"
+            android:inputType="textPassword"
             android:textSize="15sp"
             android:textColor="@color/warm_grey"
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:background="@drawable/round_box_white_radius_3"
             app:layout_constraintTop_toBottomOf="@id/act_signin_edit_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/act_signin_btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:text="로그인"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:onClick="onClick"
+            android:background="@drawable/round_box_white_radius_30"
+            app:layout_constraintTop_toBottomOf="@id/act_signin_edit_pwd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -65,7 +84,7 @@
             android:layout_marginTop="25dp"
             android:src="@drawable/ic_btn_signup"
             android:onClick="onClick"
-            app:layout_constraintTop_toBottomOf="@+id/act_signin_edit_pwd"
+            app:layout_constraintTop_toBottomOf="@+id/act_signin_btn_login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
