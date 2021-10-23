@@ -16,6 +16,7 @@ import com.wetour.we_t.ui.placeDetail.PlaceDetailActivity
 import com.wetour.we_t.ui.placeHome.PlaceHomeActivity
 import com.wetour.we_t.ui.placeInfo.PlaceInfoActivity
 import com.wetour.we_t.ui.user.SelectSignInMode
+import com.wetour.we_t.ui.user.SignInActivity
 import com.wetour.we_t.ui.user.SocialSignInActivity
 import org.json.JSONObject
 import retrofit2.Call
@@ -31,7 +32,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnSignIn -> {
-                val intent = Intent(this, SocialSignInActivity::class.java)
+                val intent = Intent(this, SignInActivity::class.java)
                 startActivity(intent)
             }
 
