@@ -4,13 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wetour.we_t.R
 import com.wetour.we_t.data.MyFamilyData
 import com.wetour.we_t.ui.makeTour.selectTourLocation.SelectTourLocationActivity
 import com.wetour.we_t.ui.myPage.MyFamilyAdapter
-import kotlinx.android.synthetic.main.activity_invite.*
 import kotlinx.android.synthetic.main.activity_make_tour.*
 
 class MakeTourActivity : AppCompatActivity(), View.OnClickListener {

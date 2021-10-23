@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() , View.OnClickListener{
         setContentView(R.layout.activity_home)
 
         preferenceUtil = PreferenceUtil(this)
-        Log.e("pref",preferenceUtil.getString("email", "no") )
+
         initUI()
         setRv()
         getDummyData()

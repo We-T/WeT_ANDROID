@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.wetour.we_t.PreferenceUtil
 import com.wetour.we_t.R
 import com.wetour.we_t.network.RequestToServer
 import kotlinx.android.synthetic.main.activity_invite_family.*
@@ -16,10 +17,13 @@ import retrofit2.Response
 
 class InviteFamilyActivity : AppCompatActivity(), View.OnClickListener {
 
+    lateinit var preferenceUtil: PreferenceUtil
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_invite_family)
 
+        preferenceUtil = PreferenceUtil(this)
         getData()
     }
 
@@ -31,7 +35,7 @@ class InviteFamilyActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun getData() {
         val jsonData = JSONObject()
-        jsonData.put("email", "test2@a.com")
+        jsonData.put("email", preferenceUtil.getString("email", "noEmail"))
 
         val body = JsonParser.parseString(jsonData.toString()) as JsonObject
 

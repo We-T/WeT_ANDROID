@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="20dp"
-    tools:context=".ui.myPage.InviteActivity">
+    tools:context=".ui.myPage.FamilyListActivity">
 
     <ImageView
-        android:id="@+id/act_invite_btn_back"
+        android:id="@+id/act_family_list_btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/act_invite_text1"
+        android:id="@+id/act_family_list_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -28,10 +28,10 @@
         android:textColor="@color/charcoal_grey"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_invite_btn_back" />
+        app:layout_constraintTop_toBottomOf="@id/act_family_list_btn_back" />
 
     <TextView
-        android:id="@+id/act_invite_text_family_num"
+        android:id="@+id/act_family_list_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -41,12 +41,12 @@
         android:textColor="@color/warm_grey"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/act_invite_text1"
-        app:layout_constraintStart_toEndOf="@id/act_invite_text1"
-        app:layout_constraintTop_toTopOf="@id/act_invite_text1" />
+        app:layout_constraintBottom_toBottomOf="@id/act_family_list_text1"
+        app:layout_constraintStart_toEndOf="@id/act_family_list_text1"
+        app:layout_constraintTop_toTopOf="@id/act_family_list_text1" />
 
     <TextView
-        android:id="@+id/act_invite_btn_invite"
+        android:id="@+id/act_family_list_btn_invite"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/act_invite_text_emptyFamily"
+        android:id="@+id/act_family_list_text_emptyFamily"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginVertical="50dp"
@@ -75,22 +75,22 @@
         android:textColor="@color/warm_grey"
         android:textSize="15sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@id/act_invite_btn_invite"
+        app:layout_constraintBottom_toTopOf="@id/act_family_list_btn_invite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_invite_text1" />
+        app:layout_constraintTop_toBottomOf="@id/act_family_list_text1" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/act_invite_recyclerview"
+        android:id="@+id/act_family_list_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/act_invite_btn_invite"
+        app:layout_constraintBottom_toTopOf="@id/act_family_list_btn_invite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/act_invite_text1"/>
+        app:layout_constraintTop_toBottomOf="@id/act_family_list_text1"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

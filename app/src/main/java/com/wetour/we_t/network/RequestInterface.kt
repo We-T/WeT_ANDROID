@@ -10,12 +10,6 @@ import retrofit2.http.Path
 
 interface RequestInterface {
 
-    @POST("/getreqtest/{hi}")
-    fun test(@Body hi: JsonObject): Call<JsonObject>
-
-    @POST("/user")
-    fun testme(@Body body: JsonObject): Call<JsonObject>
-
     @POST("/join")
     fun requestJoin(@Body body: JsonObject): Call<JsonObject>
 

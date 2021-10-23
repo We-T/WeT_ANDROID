@@ -230,7 +230,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.act_mypage_btn_close -> finish()
             R.id.act_mypage_btn_invite -> {
-                val intent = Intent(this, InviteActivity::class.java)
+                val intent = Intent(this, FamilyListActivity::class.java)
                 startActivity(intent)
             }
         }
