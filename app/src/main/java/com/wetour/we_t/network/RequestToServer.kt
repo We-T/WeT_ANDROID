@@ -55,7 +55,7 @@ object RequestToServer {
 
     var retrofit: Retrofit =
         Retrofit.Builder()
-            .baseUrl(test)
+            .baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
 //            .client(clientBuilder.build())

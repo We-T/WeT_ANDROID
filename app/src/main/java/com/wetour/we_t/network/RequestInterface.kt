@@ -31,7 +31,7 @@ interface RequestInterface {
     fun requestFamilyList(@Body body: JsonObject): Call<JsonObject>
 
     @POST("/mypage/add_family_number")
-    fun requestFamilyCode(@Body body: FamilyCodeRequest): Call<FamilyCodeResponse>
+    fun requestFamilyCode(@Body body: JsonObject): Call<JsonObject>
 
     @POST("/mypage/parents_good_list")
     fun requestMypageParentsGoodList(@Body body: JsonObject): Call<MutableList<MypageGoodListResponse>>
