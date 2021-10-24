@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.SearchActivity">
+    tools:context=".ui.search.SearchActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/act_search_btn_back">
 
                 <EditText
+                    android:id="@+id/act_search_edit_search"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
@@ -56,16 +57,17 @@
                     android:textSize="14sp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView"
+                    app:layout_constraintEnd_toStartOf="@+id/act_search_btn_search"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/act_search_btn_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:padding="20dp"
                     android:src="@drawable/ic_search_24_px"
+                    android:onClick="onClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

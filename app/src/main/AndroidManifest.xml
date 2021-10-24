@@ -20,7 +20,7 @@
         <activity android:name=".ui.user.SignUpActivity"/>
         <activity android:name=".ui.user.SignInActivity" />
         <activity android:name=".ui.user.AuthActivity" />
-        <activity android:name=".ui.home.SearchActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
         <activity android:name=".ui.myPage.FamilyListActivity" />
         <activity android:name=".ui.addSchedule.AddScheduleActivity" />
         <activity android:name=".ui.myPage.MyPageActivity" />

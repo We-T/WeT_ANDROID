@@ -39,4 +39,7 @@ interface RequestInterface {
 
     @POST("/main")
     fun requestMain(@Body body: JsonObject): Call<MainResponse>
+
+    @POST("/search/keyword")
+    fun requestSearch(@Body body: JsonObject): Call<SearchResponse>
 }

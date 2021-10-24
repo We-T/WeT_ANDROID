@@ -1,29 +1,86 @@
-package com.wetour.we_t.ui.home
+package com.wetour.we_t.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import com.wetour.we_t.PreferenceUtil
 import com.wetour.we_t.R
 import com.wetour.we_t.data.SelectTourLocationData
-import com.wetour.we_t.ui.makeTour.selectTourLocation.SelectTourLocationAdapter
+import com.wetour.we_t.network.RequestToServer
+import com.wetour.we_t.network.data.SearchResponse
+import com.wetour.we_t.ui.addSchedule.AddScheduleModel
 import kotlinx.android.synthetic.main.activity_search.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var selectTourLocationAdapter: SelectTourLocationAdapter
-    var placeData = mutableListOf<SelectTourLocationData>()
+    private lateinit var preferenceUtil: PreferenceUtil
+
+    private var fromActivity = ""
+    private var area = ""
+    private var keyword = ""
+    lateinit var searchLocationAdapter: SearchLocationAdapter
+    lateinit var searchTourAdapter: SearchTourAdapter
+
+    var locationDatas = mutableListOf<SelectTourLocationData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        setAdapter()
-        getData()
+        preferenceUtil = PreferenceUtil(this)
+
+        if (intent.getStringExtra("from") == "home") {
+            // 홈에서 넘어와 일반 통합 검색을 원할 때
+            // 기본적으로 여행 개설할 수 있는 전국 여행지가 뜸
+            fromActivity = "home"
+            initSelectLocationAdapter()
+            initSelectLocationData()
+        } else {
+            // 개설된 여행지 홈에서 여행지에 관련된 통합 검색을 원할 때
+            // 검색 키워드 갖고 넘어와 바로 검색 후 결과 보여주기
+            fromActivity = intent.getStringExtra("from").toString() // place
+            area = intent.getStringExtra("area").toString()
+            keyword = intent.getStringExtra("keyword").toString()
+            initSearchAdapter()
+            // 바로 데이터 검색
+            getSearchData()
+        }
     }
 
-    private fun getData() {
-        placeData.apply {
+    private fun initSelectLocationAdapter() {
+        searchLocationAdapter = SearchLocationAdapter(this,
+            object : SearchLocationAdapter.OnClickSelectPlace {
+                override fun selectPlace(position: Int) {
+
+                }
+            })
+
+        act_search_recyclerview.adapter = searchLocationAdapter
+        act_search_recyclerview.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun initSearchAdapter() {
+        searchTourAdapter = SearchTourAdapter(this, object : SearchTourAdapter.OnClickSelectPlace {
+            override fun selectPlace(position: Int) {
+
+            }
+        })
+        act_search_recyclerview.adapter = searchTourAdapter
+        act_search_recyclerview.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun initSelectLocationData() {
+        locationDatas.apply {
             add(
                 SelectTourLocationData(
                     "data:image/jpeg;base64,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",
@@ -146,24 +203,109 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener {
                 )
             )
         }
-        selectTourLocationAdapter.datas = placeData
-        selectTourLocationAdapter.notifyDataSetChanged()    }
+        searchLocationAdapter.datas = locationDatas
+        searchLocationAdapter.notifyDataSetChanged()
+    }
 
-    private fun setAdapter() {
-        selectTourLocationAdapter = SelectTourLocationAdapter(this,
-            object : SelectTourLocationAdapter.OnClickSelectPlace {
-                override fun selectPlace(position: Int) {
+    private fun getSearchData() {
+        act_search_text1.text = "${keyword}에 대한 검색결과"
+        searchTourAdapter.datas.clear()
 
-                }
-            })
+        when (fromActivity) {
+            "home" -> {
+                val jsonData = JSONObject()
+                jsonData.put("email", preferenceUtil.getString("email", "noEmail"))
+                jsonData.put("keyword",keyword)
 
-        act_search_recyclerview.adapter = selectTourLocationAdapter
-        act_search_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                val body = JsonParser.parseString(jsonData.toString()) as JsonObject
+                RequestToServer.service.requestSearch(body)
+                    .enqueue(object : Callback<SearchResponse> {
+                        override fun onResponse(
+                            call: Call<SearchResponse>,
+                            response: Response<SearchResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                Log.e("SearchActivity", "onResponse ${response.body()}")
+
+                                val res = response.body()
+                                res?.result_search_keyword?.forEach {
+                                    searchTourAdapter.datas.add(
+                                        AddScheduleModel(
+                                            image = it.firstimage,
+                                            location = it.title,
+                                            address = it.addr1,
+                                            category = it.category
+                                        )
+                                    )
+                                }
+
+                                act_search_recyclerview.adapter = searchTourAdapter
+                                searchTourAdapter.notifyDataSetChanged()
+
+                            } else {
+                                Log.e("SearchActivity", "onResponse ${response.message()}")
+                            }
+                        }
+
+                        override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                            Log.e("SearchActivity", "onFailure ${t.message}")
+                        }
+
+                    })
+            }
+            "place" -> {
+                // 여행지에서 넘어와 검색온 거라 여행지에 대한 정보 검색
+                val jsonData = JSONObject()
+                jsonData.put("email", preferenceUtil.getString("email", "noEmail"))
+                jsonData.put("keyword", keyword)
+                jsonData.put("area_name", area)
+
+                val body = JsonParser.parseString(jsonData.toString()) as JsonObject
+                RequestToServer.service.requestSearch(body)
+                    .enqueue(object : Callback<SearchResponse> {
+                        override fun onResponse(
+                            call: Call<SearchResponse>,
+                            response: Response<SearchResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                Log.e("SearchActivity", "onResponse ${response.body()}")
+
+                                val res = response.body()
+                                res?.result_search_keyword?.forEach {
+                                    searchTourAdapter.datas.add(
+                                        AddScheduleModel(
+                                            image = it.firstimage,
+                                            location = it.title,
+                                            address = it.addr1,
+                                            category = it.category
+                                        )
+                                    )
+                                }
+
+                                act_search_recyclerview.adapter = searchTourAdapter
+                                searchTourAdapter.notifyDataSetChanged()
+
+                            } else {
+                                Log.e("SearchActivity", "onResponse ${response.message()}")
+                            }
+                        }
+
+                        override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                            Log.e("SearchActivity", "onFailure ${t.message}")
+                        }
+
+                    })
+            }
+        }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.act_search_btn_back -> finish()
+            R.id.act_search_btn_search -> {
+                keyword = act_search_edit_search.text.toString()
+                getSearchData()
+            }
         }
     }
 }

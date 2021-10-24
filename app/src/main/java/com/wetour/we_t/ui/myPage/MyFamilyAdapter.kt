@@ -34,7 +34,7 @@ class MyFamilyAdapter(private val context: Context): RecyclerView.Adapter<MyFami
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyFamilyViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_faily, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_family, parent, false)
         return MyFamilyViewHolder(view)
     }
 

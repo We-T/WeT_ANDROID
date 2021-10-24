@@ -15,13 +15,13 @@ import com.wetour.we_t.data.MultiRecyclerData
 import com.wetour.we_t.data.TourRoomData
 import com.wetour.we_t.network.RequestToServer
 import com.wetour.we_t.network.data.MainResponse
-import com.wetour.we_t.ui.home.tourContents.MultiRecyclerContentsAdapter
 import com.wetour.we_t.ui.home.tourContents.MultiRecyclerTitleAdapter
 import com.wetour.we_t.ui.home.tourContents.model.MultiRecyclerTitle
 import com.wetour.we_t.ui.home.tourRoom.TourRoomAdapter
 import com.wetour.we_t.ui.makeTour.MakeTourActivity
 import com.wetour.we_t.ui.myPage.FamilyListActivity
 import com.wetour.we_t.ui.myPage.MyPageActivity
+import com.wetour.we_t.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import org.json.JSONObject
 import retrofit2.Call
@@ -288,6 +288,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.act_home_btn_search -> {
                 val intent = Intent(this, SearchActivity::class.java)
+                intent.putExtra("from", "home")
                 startActivity(intent)
             }
 
