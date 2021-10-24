@@ -11,7 +11,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.wetour.we_t.R
 import com.wetour.we_t.data.MultiRecyclerData
 
@@ -86,7 +88,7 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
 
         fun bind(obj: MultiRecyclerData) {
             place.text = obj.place
-            Glide.with(itemView).load("http://tong.visitkorea.or.kr/cms/resource/23/2755623_image2_1.jpg").transform(CircleCrop()).into(image)
+            Glide.with(itemView).load(obj.image).transform(CenterCrop(), RoundedCorners(30)).into(image)
             Log.e("in BasicViewHoolder", "${obj.image}")
         }
     }
@@ -110,7 +112,7 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
         fun bind(obj: MultiRecyclerData) {
             place.text = obj.place
             Log.e("in HashTagWideViewHolder", "${obj.image}")
-            Glide.with(itemView).load(obj.image).transform(CircleCrop()).into(image)
+            Glide.with(itemView).load(obj.image).transform(CenterCrop(), RoundedCorners(30)).into(image)
         }
     }
 

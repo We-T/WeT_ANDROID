@@ -42,4 +42,7 @@ interface RequestInterface {
 
     @POST("/search/keyword")
     fun requestSearch(@Body body: JsonObject): Call<SearchResponse>
+
+    @POST("/area/category")
+    fun requestPlaceInfo(@Body body: JsonObject): Call<PlaceInfoResponse>
 }

@@ -4,17 +4,33 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.wetour.we_t.data.PlaceInfoCategoryData
 import com.wetour.we_t.databinding.ItemPlaceCategoryBinding
 
-class PlaceCategoryAdapter(private val context: Context, private val onClickListener: OnClickListener):RecyclerView.Adapter<PlaceCategoryAdapter.PlaceCategoryViewHolder>() {
+class PlaceCategoryAdapter(
+    private val context: Context,
+    private val onClickListener: OnClickListener
+) : RecyclerView.Adapter<PlaceCategoryAdapter.PlaceCategoryViewHolder>() {
 
-    var datas = arrayListOf("관광지", "문화시설", "축제·공연·행사", "쇼핑", "관광지", "문화시설", "축제·공연·행사", "쇼핑")
+    var datas = arrayListOf(
+        PlaceInfoCategoryData("관광지", true),
+        PlaceInfoCategoryData("문화시설", false),
+        PlaceInfoCategoryData("축제·공연·행사", false),
+        PlaceInfoCategoryData("쇼핑", false),
+        PlaceInfoCategoryData("레포츠", false),
+        PlaceInfoCategoryData("음식점", false),
+        PlaceInfoCategoryData("숙박", false),
+        PlaceInfoCategoryData("여행코스", false)
+    )
 
-    inner class PlaceCategoryViewHolder(val binding: ItemPlaceCategoryBinding, onClickListener: OnClickListener): RecyclerView.ViewHolder(binding.root) {
+    inner class PlaceCategoryViewHolder(
+        val binding: ItemPlaceCategoryBinding,
+        onClickListener: OnClickListener
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(category: String) {
-            binding.item = category
-            binding.itemPlaceCategoryText.isSelected = false
+        fun onBind(category: PlaceInfoCategoryData) {
+            binding.item = category.category
+            binding.itemPlaceCategoryText.isSelected = category.selected
         }
 
         init {
@@ -25,9 +41,10 @@ class PlaceCategoryAdapter(private val context: Context, private val onClickList
         }
     }
 
-    interface OnClickListener{
+    interface OnClickListener {
         fun clickCategory(position: Int)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceCategoryViewHolder {
         val binding = ItemPlaceCategoryBinding.inflate(LayoutInflater.from(context), parent, false)
         return PlaceCategoryViewHolder(binding, onClickListener)
