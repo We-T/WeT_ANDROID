@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -12,6 +13,7 @@ import com.wetour.we_t.PreferenceUtil
 import com.wetour.we_t.R
 import com.wetour.we_t.data.MyFamilyData
 import com.wetour.we_t.network.RequestToServer
+import com.wetour.we_t.ui.home.HomeActivity
 import com.wetour.we_t.ui.makeTour.selectTourLocation.SelectTourLocationActivity
 import com.wetour.we_t.ui.myPage.MyFamilyAdapter
 import kotlinx.android.synthetic.main.activity_family_list.*
@@ -35,26 +37,6 @@ class MakeTourActivity : AppCompatActivity(), View.OnClickListener {
         setRv()
         getDataFromServer()
 
-    }
-
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            R.id.act_make_tour_btn_close -> finish()
-
-            R.id.act_make_tour_btn_makeTour -> {
-
-            }
-
-            R.id.act_make_tour_edit_tourName -> {
-
-            }
-            R.id.act_make_tour_edit_tourDate -> {}
-
-            R.id.act_make_tour_btn_tourLocation -> {
-                val intent = Intent(this, SelectTourLocationActivity::class.java)
-                startActivityForResult(intent, REQUEST_CODE)
-            }
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -109,5 +91,69 @@ class MakeTourActivity : AppCompatActivity(), View.OnClickListener {
                 Log.e("FamilyListActivity", "onFailure ${t.message}")
             }
         })
+    }
+
+    private fun makeTour() {
+        val jsonData = JSONObject()
+        jsonData.put("email", preferenceUtil.getString("email", "noEmail"))
+        jsonData.put("area_name", act_make_tour_btn_tourLocation.text)
+        jsonData.put("trip_name", act_make_tour_edit_tourName.text.toString())
+        jsonData.put("start_day", "00000000")
+        jsonData.put("end_day", "11111111")
+
+        // 선택된 부모 배열 만들기
+        val attentFamily = ArrayList<String>()
+        myFamilyAdapter.datas.forEach {
+            if (it.isSelected) {
+                attentFamily.add(it.name)
+            }
+        }
+
+        jsonData.put("name", attentFamily)
+
+
+        val body = JsonParser.parseString(jsonData.toString()) as JsonObject
+
+        RequestToServer.service.requestMakeTour(body).enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                if (response.isSuccessful) {
+                    Log.e("MakeTourActivity", "onResponse ${response.body()}")
+                    if (response.body()?.get("code")?.asInt == 200) {
+                        Toast.makeText(this@MakeTourActivity, "여행을 성공적으로 개설했습니다.", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@MakeTourActivity, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
+                } else {
+                    Log.e("MakeTourActivity", "onResponse ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.e("MakeTourActivity", "onFailure ${t.message}")
+            }
+
+        })
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.act_make_tour_btn_close -> finish()
+
+            R.id.act_make_tour_btn_makeTour -> {
+                makeTour()
+            }
+
+            R.id.act_make_tour_edit_tourName -> {
+
+            }
+            R.id.act_make_tour_edit_tourDate -> {}
+
+            R.id.act_make_tour_btn_tourLocation -> {
+                val intent = Intent(this, SelectTourLocationActivity::class.java)
+                startActivityForResult(intent, REQUEST_CODE)
+            }
+        }
     }
 }

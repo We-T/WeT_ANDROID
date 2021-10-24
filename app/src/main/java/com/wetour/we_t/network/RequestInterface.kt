@@ -45,4 +45,9 @@ interface RequestInterface {
 
     @POST("/area/category")
     fun requestPlaceInfo(@Body body: JsonObject): Call<PlaceInfoResponse>
+
+
+
+    @POST("/trip/save")
+    fun requestMakeTour(@Body body: JsonObject): Call<JsonObject>
 }
