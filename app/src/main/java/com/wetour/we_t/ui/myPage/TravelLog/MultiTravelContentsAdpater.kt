@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.wetour.we_t.R
-import com.wetour.we_t.data.TravelLogData
+import com.wetour.we_t.network.data.MyPageTripRecord
 
-class MultiTravelContentsAdpater(private val context: Context, private val datas: List<TravelLogData>) :
+class MultiTravelContentsAdpater(private val context: Context, private val datas: MutableList<MyPageTripRecord>) :
     RecyclerView.Adapter<MultiTravelContentsAdpater.TravelContentsViewHolder>() {
 
     inner class TravelContentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,12 +21,15 @@ class MultiTravelContentsAdpater(private val context: Context, private val datas
         val place: TextView = itemView.findViewById(R.id.item_travel_log_text_place)
         val date: TextView = itemView.findViewById(R.id.item_travel_log_text_date)
 
-        fun bind(datas: TravelLogData) {
-            image1.setBackgroundResource(R.drawable.img_papa)
-            image2.setBackgroundResource(R.drawable.img_mama)
-            title.text = datas.title
-            place.text = datas.place
-            date.text = "${datas.start_date}~${datas.end_date}"
+        fun bind(datas: MyPageTripRecord) {
+//            image1.setBackgroundResource(R.drawable.img_papa)
+//            image2.setBackgroundResource(R.drawable.img_mama)
+
+            Glide.with(itemView).load(datas.attend_famliy[0].profile).into(image1)
+            Glide.with(itemView).load(datas.attend_famliy[1].profile).into(image2)
+            title.text = datas.trip_name
+            place.text = datas.area_name
+            date.text = "${datas.start_day}~${datas.end_day}"
         }
     }
 
