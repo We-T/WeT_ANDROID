@@ -50,4 +50,7 @@ interface RequestInterface {
 
     @POST("/trip/save")
     fun requestMakeTour(@Body body: JsonObject): Call<JsonObject>
+
+    @POST("/trip/select_area")
+    fun requestParentLikePlace(@Body body: JsonObject): Call<ArrayList<PGood>>
 }

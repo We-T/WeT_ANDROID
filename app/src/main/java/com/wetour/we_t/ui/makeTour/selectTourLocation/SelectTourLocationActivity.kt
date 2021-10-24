@@ -3,28 +3,40 @@ package com.wetour.we_t.ui.makeTour.selectTourLocation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import com.wetour.we_t.PreferenceUtil
 import com.wetour.we_t.R
 import com.wetour.we_t.data.PlaceData
 import com.wetour.we_t.data.SelectTourLocationData
+import com.wetour.we_t.network.RequestToServer
+import com.wetour.we_t.network.data.PGood
 import kotlinx.android.synthetic.main.activity_select_tour_location.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SelectTourLocationActivity : AppCompatActivity(), View.OnClickListener {
 
     private val RESULT_CODE = 200
+    private lateinit var preferenceUtil: PreferenceUtil
 
     lateinit var selectTourLocationAdapter: SelectTourLocationAdapter
     lateinit var parentsLikeLocationAdapter: ParentsLikeLocationAdapter
     var placeData = mutableListOf<SelectTourLocationData>()
-    var parentsLikeData = mutableListOf<PlaceData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_tour_location)
 
-        setAdapter()
-        getData()
+        preferenceUtil = PreferenceUtil(this)
+        initAdapter()
+        initData()
+        getParentsLikePlaceFromServer()
     }
 
     override fun onClick(v: View?) {
@@ -33,7 +45,7 @@ class SelectTourLocationActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun setAdapter() {
+    private fun initAdapter() {
         selectTourLocationAdapter = SelectTourLocationAdapter(this,
             object : SelectTourLocationAdapter.OnClickSelectPlace {
                 override fun selectPlace(position: Int) {
@@ -67,7 +79,7 @@ class SelectTourLocationActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun getData() {
+    private fun initData() {
         placeData.apply {
             add(
                 SelectTourLocationData(
@@ -193,30 +205,46 @@ class SelectTourLocationActivity : AppCompatActivity(), View.OnClickListener {
         }
         selectTourLocationAdapter.datas = placeData
         selectTourLocationAdapter.notifyDataSetChanged()
+    }
 
-        parentsLikeData.apply {
-            add(
-                PlaceData(
-                    "https://cdn.pixabay.com/photo/2016/12/13/09/13/dol-hareubang-1903552__480.jpg",
-                    "제주도"
-                )
-            )
+    private fun getParentsLikePlaceFromServer() {
 
-            add(
-                PlaceData(
-                    "https://media.istockphoto.com/photos/dolsandaegyo-brcke-in-yeosu-sdkorea-picture-id999019178?b=1&k=6&m=999019178&s=170667a&w=0&h=KEtRaWozPdxy8gWxP1bIfcPrnSh_eEufmE7uOVLYB9w=",
-                    "여수"
-                )
-            )
+        val jsonData = JSONObject()
+        jsonData.put("email", preferenceUtil.getString("email", "noEmail"))
+        val body = JsonParser.parseString(jsonData.toString()) as JsonObject
 
-            add(
-                PlaceData(
-                    "https://media.istockphoto.com/photos/busan-cityscape-picture-id467652752?b=1&k=6&m=467652752&s=170667a&w=0&h=hVOhOwAzyCgqU2OOorXc5I4qbUC3QTfU9T22uppG77E=",
-                    "부산"
-                )
-            )
-        }
-        parentsLikeLocationAdapter.datas = parentsLikeData
-        parentsLikeLocationAdapter.notifyDataSetChanged()
+        RequestToServer.service.requestParentLikePlace(body).enqueue(object : Callback<ArrayList<PGood>> {
+            override fun onResponse(
+                call: Call<ArrayList<PGood>>,
+                response: Response<ArrayList<PGood>>
+            ) {
+                if (response.isSuccessful) {
+                    Log.e("SelectTourLocationActivity", "onFailure ${response.body()}")
+
+                    val res = response.body()
+
+                    if (res != null) {
+                        for (i in 0..res.size) {
+                            parentsLikeLocationAdapter.datas.add(
+                                PlaceData(
+                                    image = res[i].firstimage,
+                                    name = res[i].title
+                                )
+                            )
+                        }
+                    }
+
+                    parentsLikeLocationAdapter.notifyDataSetChanged()
+
+                } else {
+                    Log.e("SelectTourLocationActivity", "onResponse ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<PGood>>, t: Throwable) {
+                Log.e("SelectTourLocationActivity", "onFailure ${t.message}")
+            }
+
+        })
     }
 }
