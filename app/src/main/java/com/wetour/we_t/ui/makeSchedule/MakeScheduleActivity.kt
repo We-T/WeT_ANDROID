@@ -26,7 +26,7 @@ class MakeScheduleActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_schedule)
 
-//        setMap()
+        setMap()
         setDayRv()
         setRv()
         setData()
