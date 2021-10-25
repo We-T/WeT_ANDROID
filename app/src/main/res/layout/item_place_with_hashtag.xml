@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_marginHorizontal="7dp">
+
+    <ImageView
+        android:id="@+id/item_place_img"
+        android:layout_width="153dp"
+        android:layout_height="153dp"
+        android:src="@drawable/img_jeju_exam"
+        android:background="@drawable/round_box_white_radius_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_place_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:lineSpacingExtra="26sp"
+        android:text="제주도"
+        android:textColor="@color/charcoal_grey"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_place_img"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_place_recyclerveiw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_place_text"
+        tools:listitem="@layout/item_hashtag" />
+</androidx.constraintlayout.widget.ConstraintLayout>

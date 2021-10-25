@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.makeSchedule.MakeScheduleActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:clipChildren="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/act_make_schedule_btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_back_black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/act_make_schedule_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:lineSpacingExtra="8sp"
+                android:text="사랑하는 엄빠의 제주여행"
+                android:textColor="@color/charcoal_grey"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_btn_back" />
+
+            <ImageView
+                android:id="@+id/act_make_schedule_btn_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/ic_btn_edit"
+                app:layout_constraintBottom_toBottomOf="@id/act_make_schedule_text_title"
+                app:layout_constraintStart_toEndOf="@id/act_make_schedule_text_title"
+                app:layout_constraintTop_toTopOf="@id/act_make_schedule_text_title" />
+
+            <TextView
+                android:id="@+id/act_make_schedule_text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopubworld_dotum_medium"
+                android:lineSpacingExtra="10sp"
+                android:text="08.02~08.05"
+                android:textColor="@color/greyish_brown"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@id/act_make_schedule_text_title"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_title" />
+
+            <RelativeLayout
+                android:id="@+id/act_make_schedule_map"
+                android:layout_width="0dp"
+                android:layout_height="197dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_text_date" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/act_make_schedule_day_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="13dp"
+                android:layout_marginTop="25dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_map"
+                app:layout_constraintBottom_toTopOf="@id/act_make_schedule_frame"/>
+
+            <FrameLayout
+                android:id="@+id/act_make_schedule_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/act_make_schedule_day_recyclerview"
+                app:layout_constraintBottom_toTopOf="@id/act_make_schedule_btn_addSchedule">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="35dp"
+                    android:fontFamily="@font/kopubworld_dotum_bold"
+                    android:textSize="12sp"
+                    android:textColor="@color/greyish_brown"
+                    android:lineSpacingExtra="1sp"
+                    android:text="편집"
+                    android:layout_gravity="right"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/act_make_schedule_frame_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:id="@+id/act_make_schedule_frame_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:textSize="15sp"
+                    android:textColor="@color/warm_grey"
+                    android:lineSpacingExtra="25sp"
+                    android:text="제주도 여행 일정을 추가해주세요 "
+                    android:visibility="invisible"
+                    android:layout_gravity="center"/>
+
+            </FrameLayout>
+
+
+
+            <TextView
+                android:id="@+id/act_make_schedule_btn_addSchedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="9dp"
+                android:gravity="center"
+                android:background="@drawable/background_gradient_round_all_btn_15"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:lineSpacingExtra="10sp"
+                android:text="일정 추가"
+                android:onClick="onClick"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_frame"
+                app:layout_constraintBottom_toTopOf="@id/act_make_schedule_schedule_weather"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/act_make_schedule_schedule_weather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/round_box_white_radius_10"
+                android:elevation="3dp"
+                android:paddingBottom="30dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/act_make_schedule_btn_addSchedule">
+
+                <TextView
+                    android:id="@+id/act_make_schedule_weather_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/kopubworld_dotum_bold"
+                    android:lineSpacingExtra="10sp"
+                    android:text="08월 02일 제주도 날씨"
+                    android:textColor="#3a3a3a"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/act_make_schedule_weather_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/icon_weather_sun"
+                    app:layout_constraintEnd_toStartOf="@id/act_make_schedule_weather_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/act_make_schedule_weather_title" />
+
+                <TextView
+                    android:id="@+id/act_make_schedule_weather_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/kopubworld_dotum_medium"
+                    android:lineSpacingExtra="1sp"
+                    android:text="맑음, 전 날보다 1˚ 높아요\n19˚/29˚ 체감온도 19˚\n자외선 7높음"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/act_make_schedule_weather_image"
+                    app:layout_constraintTop_toBottomOf="@id/act_make_schedule_weather_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

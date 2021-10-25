@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".ui.myPage.InviteFamilyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_invite_family"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:paddingHorizontal="20dp">
+
+        <ImageView
+            android:id="@+id/act_invite_family_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:onClick="onClick"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/kopubworld_dotum_bold"
+            android:lineSpacingExtra="9sp"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:text="여행계획을 전송할 \n부모님을 초대해 주세요." />
+
+        <View
+            android:layout_width="280dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="13dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:lineSpacingExtra="8sp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="1. 부모님에게 아래 인증번호 보내기" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:lineSpacingExtra="8sp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="2. 부모님의 여행추가 &gt; 여행 구성원 인증하기\n에서 인증번호를 등록해 주세요" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kopubworld_dotum_medium"
+                android:textSize="14sp"
+                android:textColor="#ff0202"
+                android:lineSpacingExtra="8sp"
+                android:text="02분 56초"/>
+
+            <TextView
+                android:id="@+id/act_invide_family_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/kopubworld_dotum_bold"
+                android:textSize="29sp"
+                android:textColor="@color/charcoal_grey"
+                android:lineSpacingExtra="15sp"
+                android:text="8891 8284"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/background_gradient_round_all_btn_6"
+                android:paddingVertical="12dp"
+                android:fontFamily="@font/kopubworld_dotum_medium"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="인증번호 복사" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

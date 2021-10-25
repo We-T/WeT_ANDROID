@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/item_travel_log_image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/img_papa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/item_travel_log_image2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_mama"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_travel_log_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:textSize="15sp"
+        android:textColor="@color/charcoal_grey"
+        android:lineSpacingExtra="11sp"
+        android:text="사랑하는 엄빠의 제주여행"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_travel_log_image1"
+        app:layout_constraintBottom_toTopOf="@id/item_travel_log_text_place"/>
+
+    <TextView
+        android:id="@+id/item_travel_log_text_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:textSize="13sp"
+        android:textColor="@color/warm_grey"
+        android:lineSpacingExtra="13sp"
+        android:text="제주도"
+        app:layout_constraintStart_toStartOf="@id/item_travel_log_text_title"
+        app:layout_constraintTop_toBottomOf="@id/item_travel_log_text_title"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_travel_log_text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:textSize="13sp"
+        android:textColor="@color/warm_grey"
+        android:lineSpacingExtra="13sp"
+        android:text="08.02~08.05"
+        app:layout_constraintTop_toTopOf="@id/item_travel_log_text_place"
+        app:layout_constraintBottom_toBottomOf="@id/item_travel_log_text_place"
+        app:layout_constraintStart_toEndOf="@+id/item_travel_log_text_place"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
