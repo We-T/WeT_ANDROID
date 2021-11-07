@@ -11,16 +11,16 @@ import com.wetour.we_t.R
 
 class TravelLogAdapter(private val context: Context): RecyclerView.Adapter<TravelLogAdapter.TravelLogViewHolder>() {
 
-    var datas = mutableListOf<MultiTravleLog>()
+    var datas = mutableListOf<MultiTravelLog>()
 
     inner class TravelLogViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.layout_multi_recycler_title)
         val recyclerContents = itemView.findViewById<RecyclerView>(R.id.layout_multi_recycler_recyclerview)
 
-        fun bind(multiTravleLog: MultiTravleLog) {
-            title.text = multiTravleLog.title
+        fun bind(multiTravelLog: MultiTravelLog) {
+            title.text = multiTravelLog.title
 
-            val contentsAdpater = MultiTravelContentsAdpater(context, multiTravleLog.contents)
+            val contentsAdpater = MultiTravelContentsAdpater(context, multiTravelLog.contents)
             recyclerContents.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             recyclerContents.adapter = contentsAdpater
             contentsAdpater.notifyDataSetChanged()

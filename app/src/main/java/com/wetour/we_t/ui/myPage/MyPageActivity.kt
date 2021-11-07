@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -20,7 +22,7 @@ import com.wetour.we_t.data.PlaceInfoData
 import com.wetour.we_t.databinding.ActivityMyPageBinding
 import com.wetour.we_t.network.RequestToServer
 import com.wetour.we_t.network.data.*
-import com.wetour.we_t.ui.myPage.TravelLog.MultiTravleLog
+import com.wetour.we_t.ui.myPage.TravelLog.MultiTravelLog
 import com.wetour.we_t.ui.myPage.TravelLog.TravelLogAdapter
 import com.wetour.we_t.ui.placeInfo.PlaceInfoAdapter
 import com.wetour.we_t.ui.placeInfo.PlaceInfoViewModel
@@ -42,7 +44,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var placeInfoViewModel: PlaceInfoViewModel
 
     var likeData = mutableListOf<PlaceInfoData>()
-    var logDatas = mutableListOf<MultiTravleLog>()
+    var logDatas = mutableListOf<MultiTravelLog>()
     var tripRecordDatas = mutableListOf<MyPageTripRecord>()
     var reviewDatas = mutableListOf<CommentData>()
 
@@ -69,11 +71,13 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab!!.position) {
                     0 -> {
+                        Toast.makeText(this@MyPageActivity, tab.position.toString(), Toast.LENGTH_SHORT).show()
                         // 부모, 자녀 동일하게 "나의 좋아요"
                         binding.actMypageRecyclerview.adapter = placeInfoAdapter
                         requestDataFromServer("child_good")
                     }
                     1 -> {
+                        Toast.makeText(this@MyPageActivity, tab.position.toString(), Toast.LENGTH_SHORT).show()
                         if (isParent == true) {
                             // 부모 모드
                             // "여행 기록"
@@ -86,6 +90,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                     2 -> {
+                        Toast.makeText(this@MyPageActivity, tab.position, Toast.LENGTH_SHORT).show()
                         if (isParent == true) {
                             // 부모 모드
                             // "리뷰"
@@ -133,6 +138,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                     val res = response.body()
                     act_mypage_text_userName.text = res?.name
                     // 사진 설정
+                    Glide.with(this@MyPageActivity).load(res?.profile).transform(CircleCrop())
+                        .into(act_mypage_img_profile)
 
                     // Init Staitc Data ------------------------------------------------------------
                     if (res != null) {
@@ -146,6 +153,8 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                             act_mypage_tab_layout.getTabAt(0)!!.text = "나의 좋아요"
                             act_mypage_tab_layout.getTabAt(1)!!.text = "부모님 좋아요"
                             act_mypage_tab_layout.getTabAt(2)!!.text = "여행 기록"
+
+                            requestDataFromServer("child_good")
                         } else {
                             // 부모 모드
                             addTabListener(true)
@@ -156,28 +165,10 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                             act_mypage_tab_layout.getTabAt(0)!!.text = "좋아요 여행지"
                             act_mypage_tab_layout.getTabAt(1)!!.text = "여행 기록"
                             act_mypage_tab_layout.getTabAt(2)!!.text = "리뷰"
+
+                            requestDataFromServer("parent_good")
                         }
                     }
-
-                    // Init Tab Dynamic Data -------------------------------------------------------
-                    // 기본 마이페이지 딱 들어갔을 때 데이터
-                    res?.my_good?.forEach {
-                        likeData.apply {
-                            add(
-                                PlaceInfoData(
-                                    image = it.firstimage,
-                                    true,
-                                    placeName = it.title,
-                                    placeAddress = it.addr1,
-                                    star = it.is_good,
-                                    hashTag = it.tag_list
-                                )
-                            )
-                        }
-                    }
-
-                    placeInfoAdapter.datas = likeData
-                    placeInfoAdapter.notifyDataSetChanged()
 
                 } else {
                     Log.e(
@@ -200,14 +191,13 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
 
         val body = JsonParser.parseString(jsonData.toString()) as JsonObject
 
-
         when (request) {
             "child_good" -> {
                 RequestToServer.service.requestMypageMyGoodList(body)
-                    .enqueue(object : Callback<MypageGoodListResponse> {
+                    .enqueue(object : Callback<MypageMyGoodListResponse> {
                         override fun onResponse(
-                            call: Call<MypageGoodListResponse>,
-                            response: Response<MypageGoodListResponse>
+                            call: Call<MypageMyGoodListResponse>,
+                            response: Response<MypageMyGoodListResponse>
                         ) {
                             if (response.isSuccessful) {
                                 Log.e(
@@ -216,9 +206,10 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                                 )
 
                                 val res = response.body()
+                                likeData.clear()
 
                                 // Init Tab Dynamic Data -------------------------------------------------------
-                                res?.p_good_list?.forEach {
+                                res?.my_good_list?.forEach {
                                     likeData.apply {
                                         add(
                                             PlaceInfoData(
@@ -244,7 +235,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                             }
                         }
 
-                        override fun onFailure(call: Call<MypageGoodListResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<MypageMyGoodListResponse>, t: Throwable) {
                             Log.e(
                                 "MyPageActivity",
                                 "requestDataFromServer onFailure - ${t.message}"
@@ -255,10 +246,10 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
             }
             "parent_good" -> {
                 RequestToServer.service.requestMypageParentsGoodList(body)
-                    .enqueue(object : Callback<MypageGoodListResponse> {
+                    .enqueue(object : Callback<MypageParentGoodListResponse> {
                         override fun onResponse(
-                            call: Call<MypageGoodListResponse>,
-                            response: Response<MypageGoodListResponse>
+                            call: Call<MypageParentGoodListResponse>,
+                            response: Response<MypageParentGoodListResponse>
                         ) {
                             if (response.isSuccessful) {
                                 Log.e(
@@ -266,6 +257,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                                     "requestDataFromServer parent_good onResponse - ${response.body()}"
                                 )
                                 val res = response.body()
+                                likeData.clear()
 
                                 // Init Tab Dynamic Data -------------------------------------------------------
                                 res?.p_good_list?.forEach {
@@ -294,7 +286,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                             }
                         }
 
-                        override fun onFailure(call: Call<MypageGoodListResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<MypageParentGoodListResponse>, t: Throwable) {
                             Log.e(
                                 "MyPageActivity",
                                 "requestDataFromServer onFailure - ${t.message}"
@@ -317,6 +309,7 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                                 )
 
                                 val res = response.body()
+                                tripRecordDatas.clear()
 
                                 // Init Tab Dynamic Data -------------------------------------------------------
                                 res?.trip_record_list?.forEach {
@@ -334,43 +327,11 @@ class MyPageActivity : AppCompatActivity(), View.OnClickListener {
                                 }
                                 logDatas.apply {
                                     add(
-                                        MultiTravleLog(
+                                        MultiTravelLog(
                                             "다가오는 여행",
                                             tripRecordDatas
                                         )
                                     )
-
-//                                    add(
-//                                        MultiTravleLog(
-//                                            "지난 여행",
-//                                            arrayListOf(
-//                                                TravelLogData(
-//                                                    "",
-//                                                    "",
-//                                                    "사랑하는 엄빠의 제주여행",
-//                                                    "제주도",
-//                                                    "08.02",
-//                                                    "08.05"
-//                                                ),
-//                                                TravelLogData(
-//                                                    "",
-//                                                    "",
-//                                                    "결혼기념 청주",
-//                                                    "충정북도",
-//                                                    "08.02",
-//                                                    "08.05"
-//                                                ),
-//                                                TravelLogData(
-//                                                    "",
-//                                                    "",
-//                                                    "여수가족여행",
-//                                                    "전라남도",
-//                                                    "08.02",
-//                                                    "08.05"
-//                                                )
-//                                            )
-//                                        )
-//                                    )
                                 }
 
                                 travelLogAdapter.datas = logDatas

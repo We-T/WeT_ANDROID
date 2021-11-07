@@ -28,10 +28,10 @@ interface RequestInterface {
     fun requestFamilyCode(@Body body: JsonObject): Call<JsonObject>
 
     @POST("/mypage/parents_good_list")
-    fun requestMypageParentsGoodList(@Body body: JsonObject): Call<MypageGoodListResponse>
+    fun requestMypageParentsGoodList(@Body body: JsonObject): Call<MypageParentGoodListResponse>
 
     @POST("/mypage/my_good_list")
-    fun requestMypageMyGoodList(@Body body: JsonObject): Call<MypageGoodListResponse>
+    fun requestMypageMyGoodList(@Body body: JsonObject): Call<MypageMyGoodListResponse>
 
     @POST("/mypage/trip_record")
     fun reqeustMypageTripRecord(@Body body: JsonObject): Call<MyPageTripRecordResponse>

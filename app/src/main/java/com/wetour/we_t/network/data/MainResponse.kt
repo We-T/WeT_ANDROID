@@ -8,7 +8,7 @@ data class MainResponse(
     val wet_good: ArrayList<WetGood>,
     val tv_tour: ArrayList<TvTour>,
     val festival: ArrayList<Festival>,
-    val p_good: ArrayList<PGood>?,
+    val p_good_list: ArrayList<PGood>?,
     val trip_record_list: ArrayList<TripRecordList>?
 )
 

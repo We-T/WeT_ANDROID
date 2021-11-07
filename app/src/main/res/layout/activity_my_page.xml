@@ -50,10 +50,10 @@
 
                     <ImageView
                         android:id="@+id/act_mypage_img_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
                         android:layout_marginTop="80dp"
-                        android:src="@drawable/dasole"
+                        android:src="@drawable/ic_logo"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +65,7 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/kopubworld_dotum_medium"
                         android:lineSpacingExtra="15sp"
-                        android:text="변다솔님"
+                        android:text="사용자"
                         android:textColor="@color/white"
                         android:textSize="23sp"
                         android:textStyle="normal"
