@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.wetour.we_t.PreferenceUtil
@@ -84,6 +85,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                     if (res != null) {
                         // init Static ------------------------------------------------------------
                         act_home_text_user.text = "${res.name}님,"
+                        Glide.with(this@HomeActivity).load(res.profile).into(act_home_btn_mypage)
 
                         if (res.type == "1") {
                             //자녀
@@ -149,6 +151,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                         titleData.apply {
                             add(
                                 MultiRecyclerTitle(
+                                    "부모님이 이 여행지를 좋아해요!",
+                                    parent_good
+                                )
+                            )
+                            add(
+                                MultiRecyclerTitle(
                                     "위트가 추천하는 관광지",
                                     wet_reco
                                 )
@@ -177,8 +185,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                                     profile1 = it.attend_famliy[0].profile,
                                     profile2 = it.attend_famliy[1].profile,
                                     roomName = it.trip_name,
-                                    dDay = it.start_day,
-                                    date = "${it.start_day}~${it.end_day}"
+                                    dDay = it.dDay,
+                                    date = it.day
                                 )
                             )
                         }

@@ -22,6 +22,10 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
 
     // getItemViewType의 리턴값 Int가 viewType으로 넘어온다.
     // viewType으로 넘어오는 값에 따라 viewHolder를 알맞게 처리해주면 된다.
+    //        const val BASIC_TYPE = 0
+    //        const val HASHTAG_TYPE = 1
+    //        const val HASHTAG_WIDE_TYPE = 2
+    //        const val FESTIVAL_TYPE = 3
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View?
         return when (viewType) {
@@ -58,9 +62,6 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
 
             MultiRecyclerData.HASHTAG_TYPE -> {
                 (holder as HashTagViewHolder).bind(obj)
-//                holder.image.setImageResource(obj.image)
-//                Glide.with(itemView).load(obj.image).transform(CircleCrop()).into(holder.image)
-
                 val hashTagAdpater = HashTagAdpater(context)
                 holder.hashTagRecyclerView.adapter = hashTagAdpater
                 holder.hashTagRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -89,7 +90,6 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
         fun bind(obj: MultiRecyclerData) {
             place.text = obj.place
             Glide.with(itemView).load(obj.image).transform(CenterCrop(), RoundedCorners(30)).into(image)
-            Log.e("in BasicViewHoolder", "${obj.image}")
         }
     }
 
@@ -100,7 +100,7 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
 
         fun bind(obj: MultiRecyclerData) {
             place.text = obj.place
-            Glide.with(itemView).load(Uri.parse(obj.image)).transform(CircleCrop()).into(image)
+            Glide.with(itemView).load(Uri.parse(obj.image)).transform(CenterCrop(), RoundedCorners(30)).into(image)
         }
     }
 
@@ -111,7 +111,6 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
 
         fun bind(obj: MultiRecyclerData) {
             place.text = obj.place
-            Log.e("in HashTagWideViewHolder", "${obj.image}")
             Glide.with(itemView).load(obj.image).transform(CenterCrop(), RoundedCorners(30)).into(image)
         }
     }
@@ -122,9 +121,7 @@ class MultiRecyclerContentsAdapter(private val context: Context, private val dat
 
         fun bind(obj: MultiRecyclerData) {
             place.text = obj.place
-            Log.e("in FestivalHolder", "${obj.image}")
-//            Glide.with(itemView).load(obj.image).transform(CircleCrop()).into(image)
-            image.setImageResource(R.drawable.img_fes1)
+            Glide.with(itemView).load(obj.image).transform(CenterCrop(), RoundedCorners(30)).into(image)
         }
     }
 }

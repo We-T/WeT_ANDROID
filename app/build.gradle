@@ -13,7 +13,7 @@ android {
         applicationId "com.wetour.we_t"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 1
+        versionCode 100
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

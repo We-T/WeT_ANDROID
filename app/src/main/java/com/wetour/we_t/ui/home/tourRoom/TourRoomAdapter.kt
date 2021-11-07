@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.wetour.we_t.R
 import com.wetour.we_t.data.TourRoomData
 
@@ -37,8 +39,8 @@ class TourRoomViewHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
     val date = itemview.findViewById<TextView>(R.id.item_home_tour_date)
 
     fun bind(tourRoomData: TourRoomData) {
-        img1.setImageResource(R.drawable.img_mama)
-        img2.setImageResource(R.drawable.img_papa)
+        Glide.with(itemView).load(tourRoomData.profile1).transform(CircleCrop()).into(img1)
+        Glide.with(itemView).load(tourRoomData.profile2).transform(CircleCrop()).into(img2)
         name.text = tourRoomData.roomName
         dDay.text = tourRoomData.dDay
         date.text = tourRoomData.date

@@ -17,15 +17,15 @@
 
         <ImageView
             android:id="@+id/item_home_tour_img_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginLeft="20dp"
             android:src="@drawable/img_mama" />
 
         <ImageView
             android:id="@+id/item_home_tour_img_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:src="@drawable/img_papa" />
     </FrameLayout>
 

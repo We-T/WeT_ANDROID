@@ -37,8 +37,8 @@ data class PGood(
 
 data class TripRecordList(
     val trip_name: String,
-    val start_day: String,
-    val end_day: String,
+    val dDay: String,
+    val day: String,
     val attend_famliy: ArrayList<AttendFamily>
 )
 

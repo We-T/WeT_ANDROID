@@ -18,41 +18,41 @@
         android:theme="@style/Theme.WE_T"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.user.SignUpActivity"/>
-        <activity android:name=".ui.user.SignInActivity" />
-        <activity android:name=".ui.user.AuthActivity" />
-        <activity android:name=".ui.search.SearchActivity" />
-        <activity android:name=".ui.myPage.FamilyListActivity" />
-        <activity android:name=".ui.addSchedule.AddScheduleActivity" />
-        <activity android:name=".ui.myPage.MyPageActivity" />
-        <activity android:name=".TestActivity">
+        <activity android:name=".ui.user.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.makeSchedule.MakeScheduleActivity" />
-        <activity android:name=".ui.placeDetail.PlaceDetailActivity" />
-        <activity android:name=".ui.placeHome.PlaceHomeActivity" />
-        <activity android:name=".ui.placeInfo.PlaceInfoActivity" />
-        <activity android:name=".ui.myPage.InviteFamilyActivity" />
-        <activity android:name=".ui.makeTour.selectTourLocation.SelectTourLocationActivity" />
-        <activity android:name=".ui.makeTour.MakeTourActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.user.SelectSignInMode" />
-        <activity android:name=".ui.user.SocialSignInActivity" />
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+        <activity android:name=".ui.user.AuthActivity"/>
+        <activity android:name=".ui.search.SearchActivity"/>
+        <activity android:name=".ui.myPage.FamilyListActivity"/>
+        <activity android:name=".ui.addSchedule.AddScheduleActivity"/>
+        <activity android:name=".ui.myPage.MyPageActivity"/>
+        <activity android:name=".ui.makeSchedule.MakeScheduleActivity"/>
+        <activity android:name=".ui.placeDetail.PlaceDetailActivity"/>
+        <activity android:name=".ui.placeHome.PlaceHomeActivity"/>
+        <activity android:name=".ui.placeInfo.PlaceInfoActivity"/>
+        <activity android:name=".ui.myPage.InviteFamilyActivity"/>
+        <activity android:name=".ui.makeTour.selectTourLocation.SelectTourLocationActivity"/>
+        <activity android:name=".ui.makeTour.MakeTourActivity"/>
+        <activity android:name=".ui.home.HomeActivity"/>
+        <activity android:name=".ui.user.SelectSignInMode"/>
+        <activity android:name=".ui.user.SocialSignInActivity"/>
+<!--        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
 
-                <data
-                    android:host="oauth"
-                    android:scheme="kakao51cb96b948018774fafa9b6b6e008702" />
-            </intent-filter>
-        </activity>
+<!--                <data-->
+<!--                    android:host="oauth"-->
+<!--                    android:scheme="kakao51cb96b948018774fafa9b6b6e008702" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
