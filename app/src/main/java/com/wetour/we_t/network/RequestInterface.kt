@@ -53,4 +53,7 @@ interface RequestInterface {
 
     @POST("/trip/select_area")
     fun requestParentLikePlace(@Body body: JsonObject): Call<ArrayList<PGood>>
+
+    @POST("/area")
+    fun requestArea(@Body body: JsonObject): Call<AreaResponse>
 }
