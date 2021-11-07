@@ -10,5 +10,5 @@ data class ResultSearchKeyword(
     val title: String,
     val firstimage: String,
     val addr1: String,
-    val category: String
+    val overview: Int
 )

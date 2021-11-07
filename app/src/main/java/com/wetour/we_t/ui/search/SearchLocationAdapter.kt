@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +21,7 @@ class SearchLocationAdapter(private val context: Context, private val onClickSel
         val image = itemView.findViewById<ImageView>(R.id.item_select_tour_img)
         val placeName: TextView = itemView.findViewById(R.id.item_select_tour_placeName)
         val placeSub: TextView = itemView.findViewById(R.id.item_select_tour_placeSub)
-        val btn: Button = itemView.findViewById(R.id.item_select_tour_btn)
+        val btn: TextView = itemView.findViewById(R.id.item_select_tour_btn)
 
         fun bind(selectTourLocationData: SelectTourLocationData) {
             Glide.with(itemView).load(selectTourLocationData.image).circleCrop().into(image)
@@ -39,7 +38,7 @@ class SearchLocationAdapter(private val context: Context, private val onClickSel
         }
 
         init {
-            itemView.item_select_tour_btn.setOnClickListener {
+            itemView.setOnClickListener {
                 onClickSelectPlace.selectPlace(adapterPosition)
             }
         }

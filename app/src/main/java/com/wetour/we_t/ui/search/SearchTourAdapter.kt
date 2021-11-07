@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.wetour.we_t.R
 import com.wetour.we_t.ui.addSchedule.AddScheduleModel
 import kotlinx.android.synthetic.main.item_select_tour_location.view.*
@@ -21,16 +23,18 @@ class SearchTourAdapter(private val context: Context, private val onClickSelectP
         val location: TextView = itemView.findViewById(R.id.item_add_schedule_ver_text_location)
         val address: TextView = itemView.findViewById(R.id.item_add_schedule_ver_text_address)
         val category: TextView = itemView.findViewById(R.id.item_add_schedule_ver_text_category)
+        val btn: TextView = itemView.findViewById(R.id.item_add_schedule_ver_btn)
 
         fun bind(addScheduleModel: AddScheduleModel) {
             location.text = addScheduleModel.location
             address.text = addScheduleModel.address
             category.text = addScheduleModel.category.toString()
-            Glide.with(itemView).load(addScheduleModel.image).into(image)
+            btn.visibility = View.GONE
+            Glide.with(itemView).load(addScheduleModel.image).transform(CenterCrop(), RoundedCorners(10)).into(image)
         }
 
         init {
-            itemView.item_select_tour_btn.setOnClickListener {
+            itemView.setOnClickListener {
                 onClickSelectPlace.selectPlace(adapterPosition)
             }
         }
