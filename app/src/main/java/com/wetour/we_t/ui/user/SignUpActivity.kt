@@ -20,6 +20,7 @@ import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var jsonData: JSONObject
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)

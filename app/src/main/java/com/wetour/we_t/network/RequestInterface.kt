@@ -56,4 +56,7 @@ interface RequestInterface {
 
     @POST("/area")
     fun requestArea(@Body body: JsonObject): Call<AreaResponse>
+
+    @POST("/area/keyword")
+    fun requestAreaKeyword(@Body body: JsonObject)
 }

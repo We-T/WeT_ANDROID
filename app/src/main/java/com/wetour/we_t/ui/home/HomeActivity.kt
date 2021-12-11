@@ -209,26 +209,26 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.act_home_btn_mypage -> {
-                val intent = Intent(this, MyPageActivity::class.java)
-                startActivity(intent)
-            }
-
-            R.id.act_home_btn_search -> {
-                val intent = Intent(this, SearchActivity::class.java)
-                intent.putExtra("from", "home")
-                startActivity(intent)
-            }
-
-            R.id.act_home_btn_invite_family -> {
-                val intent = Intent(this, FamilyListActivity::class.java)
-                startActivity(intent)
-            }
-
-            R.id.act_home_btn_make_tour -> {
-                val intent = Intent(this, MakeTourActivity::class.java)
-                startActivity(intent)
-            }
+//            R.id.act_home_btn_mypage -> {
+//                val intent = Intent(this, MyPageActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//            R.id.act_home_btn_search -> {
+//                val intent = Intent(this, SearchActivity::class.java)
+//                intent.putExtra("from", "home")
+//                startActivity(intent)
+//            }
+//
+//            R.id.act_home_btn_invite_family -> {
+//                val intent = Intent(this, FamilyListActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//            R.id.act_home_btn_make_tour -> {
+//                val intent = Intent(this, MakeTourActivity::class.java)
+//                startActivity(intent)
+//            }
         }
     }
 }
