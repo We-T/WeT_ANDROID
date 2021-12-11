@@ -17,16 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WE_T"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.makeTour.selectTourDate.SelectTourDateActivity">
+        <activity android:name=".ui.makeTour.selectTourDate.SelectTourDateActivity"/>
+        <activity android:name=".ui.user.SignUpActivity" />
+        <activity android:name=".ui.user.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.user.SignUpActivity" />
-        <activity android:name=".ui.user.SignInActivity">
-
         </activity>
         <activity android:name=".ui.user.AuthActivity" />
         <activity android:name=".ui.search.SearchActivity" />
