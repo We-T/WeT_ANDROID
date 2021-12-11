@@ -41,6 +41,7 @@
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.user.SelectSignInMode" />
         <activity android:name=".ui.user.SocialSignInActivity" />
+        
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="51cb96b948018774fafa9b6b6e008702" />
