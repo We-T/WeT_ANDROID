@@ -8,10 +8,12 @@ import android.view.View
 import android.widget.Toast
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.wetour.we_t.PreferenceUtil
 import com.wetour.we_t.R
 import com.wetour.we_t.network.RequestToServer
 import com.wetour.we_t.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_auth.*
+import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.json.JSONObject
 import retrofit2.Call
@@ -20,23 +22,20 @@ import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var jsonData: JSONObject
+    lateinit var preferenceUtil: PreferenceUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        preferenceUtil = PreferenceUtil(this)
+
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.act_signup_btn_back -> finish()
             R.id.act_signup_btn_next -> {
-//                val intent = Intent(this, SelectSignInMode::class.java)
-//                intent.putExtra("name", act_signup_edit_name.text.toString())
-//                intent.putExtra("id", act_signup_edit_id.text.toString())
-//                intent.putExtra("pwd", act_signup_edit_pwd.text.toString())
-//                intent.putExtra("phone", act_signup_edit_phone.text.toString().toInt())
-//                startActivity(intent)
-
                 jsonData = JSONObject()
                 jsonData.put("email", act_signup_edit_id.text.toString())
                 jsonData.put("pwd", act_signup_edit_pwd.text.toString())
@@ -64,6 +63,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                             val res = response.body()
                             when(res!!.get("code").asString) {
                                 "200" -> {
+
+                                    preferenceUtil.setString("email", act_signin_edit_id.text.toString())
+
                                     val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
                                     startActivity(intent)
                                 }

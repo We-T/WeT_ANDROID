@@ -76,7 +76,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                 })
             }
             R.id.act_singin_btn_signup -> {
-                val intent = Intent(this@SignInActivity, SelectSignInMode::class.java)
+                val intent = Intent(this@SignInActivity, AgreementActivity::class.java)
                 startActivity(intent)
             }
         }

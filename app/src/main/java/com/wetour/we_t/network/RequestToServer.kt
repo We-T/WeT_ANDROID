@@ -9,7 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RequestToServer {
 
-    var BASE_URL = "http://39.117.207.206:8081"
+//    var BASE_URL = "http://39.117.207.206:8081"
+    var BASE_URL = "http://ec2-3-35-92-90.ap-northeast-2.compute.amazonaws.com:3000"
     var test = "http://172.20.10.2:3000"
 
 //    val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)

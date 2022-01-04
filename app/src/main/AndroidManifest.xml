@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WE_T"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.makeTour.selectTourDate.SelectTourDateActivity"/>
+        <activity android:name=".ui.user.PersonalInformationSecurityActivity"></activity>
+        <activity android:name=".ui.user.AgreementActivity" />
+        <activity android:name=".ui.makeTour.selectTourDate.SelectTourDateActivity" />
         <activity android:name=".ui.user.SignUpActivity" />
         <activity android:name=".ui.user.SignInActivity">
             <intent-filter>
@@ -41,7 +43,7 @@
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.user.SelectSignInMode" />
         <activity android:name=".ui.user.SocialSignInActivity" />
-        
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="51cb96b948018774fafa9b6b6e008702" />
